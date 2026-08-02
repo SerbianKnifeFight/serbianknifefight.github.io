@@ -2,10 +2,12 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<link rel="icon" type="image/x-icon" href="foldername/sitecon.ico">
+<link rel="icon" type="image/x-icon" href="Foldername/sitecon.ico">
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>SerbianKnifeFight</title>
+<title>SerbianKnifeFight - about</title>
 <style>
+* { box-sizing: border-box; }
+
 body {
   margin: 0;
   font-family: "Courier New", monospace;
@@ -24,129 +26,180 @@ body {
   pointer-events: none;
 }
 
-.main-block {
-  background: #f7f7e1;
-  border: 2px solid black;
-  max-width: 900px;
-  margin: 60px auto;
-  padding: 30px;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  box-sizing: border-box;
-}
-
-.back-button {
-  position: absolute;
-  top: 12px;
-  right: 12px;
+.topbar {
   background: #ff5d38;
-  color: black;
-  padding: 6px 12px;
+  padding: 5px 12px;
+  border-bottom: 3px solid #b56500;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+.topbar a {
+  color: #000;
   text-decoration: none;
-  font-weight: bold;
-  border: 2px solid #b56500;
-  border-radius: 3px;
+  font-size: clamp(12px, 3vw, 15px);
+}
+.topbar a::before {
+  content: "/";
+  opacity: .55;
+  margin-right: 1px;
+}
+.topbar a:hover { text-decoration: underline; }
+.topbar a.active { font-weight: bold; text-decoration: underline; }
+
+.content-box {
+  background: #f7f7e1;
+  color: #000;
+  width: 100%;
+  min-height: 360px;
+  padding: 22px 20px 26px;
+  font-size: 13px;
+  line-height: 1.55;
 }
 
-.back-button:hover {
-  background: #e04e2a;
-}
-
-.title-container {
+.title-row {
   display: flex;
   align-items: center;
-  justify-content: center;
+  gap: 16px;
   flex-wrap: wrap;
-  gap: 20px;
+  margin-bottom: 14px;
 }
-
-.title-container img {
-  max-width: 150px;
+.title-row img {
+  max-width: 100px;
   height: auto;
+  border: 1px solid #000;
 }
-
-.title-container h1 {
-  font-size: clamp(24px, 5vw, 36px);
+.content-box h1 {
+  font-size: 20px;
   margin: 0;
-  text-align: center;
 }
 
-.album-toggle {
+.aka-banner {
+  display: block;
+  max-width: 480px;
+  width: 100%;
+  height: auto;
+  border: 1px solid #000;
+  margin: 0 0 16px;
+}
+
+.content-box > p {
+  font-family: Verdana, sans-serif;
+  font-size: 12.5px;
+  line-height: 1.55;
+  margin: 0 0 12px;
+  max-width: 680px;
+}
+
+.content-box a {
+  color: #b5450c;
+  text-decoration: none;
+}
+.content-box a:hover { text-decoration: underline; }
+
+details.tree-folder,
+details.tree-item {
+  margin: 3px 0;
+  padding-left: 12px;
+  border-left: 1px dotted #b3af8f;
+}
+details.tree-folder > summary,
+details.tree-item > summary {
   cursor: pointer;
-  text-decoration: underline;
-  text-decoration-style: dashed;
+  list-style: none;
+  padding: 3px 0;
+  font-size: 13px;
+  position: relative;
+  padding-left: 16px;
 }
-
-.album-toggle:hover {
-  color: #ff5d38;
+details.tree-folder > summary::-webkit-details-marker,
+details.tree-item > summary::-webkit-details-marker { display: none; }
+details.tree-folder > summary::before,
+details.tree-item > summary::before {
+  content: "▸";
+  position: absolute;
+  left: 0;
+  color: #8c8760;
 }
+details.tree-folder[open] > summary::before,
+details.tree-item[open] > summary::before { content: "▾"; }
+details.tree-folder > summary { font-weight: bold; }
+details.tree-folder > summary:hover,
+details.tree-item > summary:hover { background: rgba(0,0,0,.04); }
 
-.image-container {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.3s ease-out;
+.tree-kv {
+  font-size: 12.5px;
+  margin: 2px 0 2px 18px;
+  max-width: 640px;
 }
-
-.image-container.show {
-  max-height: 600px;
+.tree-key {
+  display: inline-block;
+  width: 80px;
+  color: #6b6850;
+}
+.tree-note {
+  font-style: italic;
+  color: #6b6850;
+  font-size: 11px;
 }
 
 .expandable-img {
   width: 100%;
-  max-width: 450px;
+  max-width: 420px;
   display: block;
-  margin-top: 10px;
+  margin: 6px 0 6px 18px;
   cursor: zoom-in;
-  border: 2px solid black;
+  border: 1px solid #000;
 }
 
-.modal {
-  display: none; 
+.lightbox-overlay {
   position: fixed;
-  z-index: 1000;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.9);
-  justify-content: center;
+  inset: 0;
+  background: rgba(0,0,0,.9);
+  display: none;
   align-items: center;
+  justify-content: center;
+  padding: 40px;
+  z-index: 1000;
+  cursor: zoom-out;
 }
-
-.modal-content {
-  max-width: 90%;
-  max-height: 90%;
+.lightbox-overlay.open { display: flex; }
+.lightbox-overlay img {
+  max-width: 100%;
+  max-height: 100%;
   object-fit: contain;
-  border: 2px solid white;
+  border: 2px solid #f7f7e1;
 }
-
-.modal-close {
-  position: absolute;
-  top: 20px;
-  right: 35px;
-  color: #fff;
-  font-size: 40px;
-  font-weight: bold;
+.lightbox-close {
+  position: fixed;
+  top: 12px;
+  right: 18px;
+  color: #f7f7e1;
+  font-size: 26px;
+  line-height: 1;
+  z-index: 1001;
   cursor: pointer;
 }
 
+.prometheus {
+  background: #999;
+  padding: 4px 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.prometheus span { font-size: 11px; color: #000; }
+.prometheus a {
+  color: #000;
+  text-decoration: none;
+  font-size: 11px;
+}
+.prometheus a:hover { text-decoration: underline; }
+
 @media (max-width: 600px) {
-  .main-block {
-    padding: 20px;
-    margin: 40px 12px;
-  }
-  .title-container img {
-    max-width: 120px;
-  }
-  .title-container h1 {
-    font-size: 22px;
-  }
-  .back-button {
-    padding: 4px 10px;
-    font-size: 14px;
-  }
+  .content-box { padding: 16px 14px 20px; }
+  .title-row img { max-width: 76px; }
+  .content-box h1 { font-size: 18px; }
 }
 </style>
 </head>
@@ -154,33 +207,74 @@ body {
 
 <canvas id="bestagon"></canvas>
 
-<div class="main-block">
-  <a href="index.html" class="back-button">Go back</a>
-  <div class="title-container">
-    <h1>About me</h1>
-    <img src="sitecon.png">
-  </div>
-  <img src="aka.png" width=100%>
-  <p>Hello, welcome to my very unorganized and inconcise 'About me' page. My name is <b>June</b>, i'm a 17 year old from Serbia. I like physics, mathematics - geometry, quantum computers, electronics, computer history, hardware, 3D graphics & rendering, low-level programming, operating systems, game engines, game development, 2D and 3D art, drawing, painting, reading, music theory & composition, YTPMV, Siivagunner/'high quality video game rips', philosophy, marxism, chess, modding, gaming, collecting, working out, watching NFL and that's already far too many things. I plan on studying Electrical Engineering, specifically physical electronics or energetics - nuclear. I've been playing piano since i was 8 and i'd love to start learning how to play the saxophone, it is my 2nd favorite instrument (Right behind the piano of course :)). The programming languages i'm most comfortable in are C, <a href="https://www.youtube.com/live/C1pjPv3WJyo">C++</a> and Lua. I also love reading <a href="https://serbianknifefight.neocities.org/">(see books in the reading section here)</a>, the most influential work in my life is <b>Homestuck</b>, besides that, i don't really read much fiction books. One of my main literary interests is Marxism, and i myself am a Left-Communist.</p>
-  <p>I'm one of the co-creators of <a href='https://fishyogurtbacteriavirus.neocities.org/'>fishyogurtbacteriavirus</a>, a creative group that focuses on video game projects. In my free time (i don't have a lot of it) i play the piano and i like to make <a href='https://www.youtube.com/@serbianknifefightytpmv'>YTPMV and mashup/cover music</a>, <i>sometimes even original music!</i> I've been a participant of the Technical Sciences program at <a href='https://petnica.rs/'>Petnica Research Center</a> since <b>2026</b>. I love collecting old hardware of any types, peripherals, old terminals, computers, electronic instruments, etc. I compete in mathematics and physics olympiads in my country (Serbia) and have won multiple medals. I love playing games (see below), but nowadays i don't play a whole lot, 90% of the time i'm playing <a href='https://www.chess.com/member/serbianknifefight'>Chess</a> or Super Smash Bros. Melee. </p>
-  <p>Favorites<br>
-  <b>Games:</b> Metal Gear Solid 2, Undertale, Terraria, LSD: Dream Emulator, Barotrauma, Mindustry, Fractal Block World, Fallout: New Vegas, Hollow Knight, Dark Souls 2, Deltarune, LISA, Yume Nikki<br>
-  <b>Albums:</b> <span class="album-toggle">Expand image</span>
-  <span class="image-container">
-    <img src="chart(9).png" alt="Albums Chart" class="expandable-img" data-fullsrc="chart(9).png">
-  </span><br>
-  <b>Favorite YTPMVers:</b> <a href='https://www.youtube.com/@ColtonWatson'>Colton Watson</a>, <a href='https://www.youtube.com/@resampler'>Cake</a>, <a href='https://www.youtube.com/@meltdrum'>Meltdrum</a><br>
-  <b>Anime:</b> Jojo's Bizzare Adventure, Neon Genesis Evangelion, Cowboy Bebop<br>
-  <b>Animals:</b> Pigeons and Raccoons<br>
-  <b>Color:</b> <span style="color:green;">Green</span><br>
+<div class="topbar">
+  <a href="index.html">home</a>
+  <a href="aboutme.html" class="active">about</a>
+  <a href="Blog.html">blog</a>
 </div>
 
-<div id="image-modal" class="modal">
-  <span class="modal-close">&times;</span>
-  <img class="modal-content" id="modal-img">
+<div class="content-box">
+
+  <div class="title-row">
+    <img src="sitecon.png" alt="">
+    <h1>about me</h1>
+  </div>
+
+  <img src="aka.png" alt="" class="aka-banner">
+
+  <p>Hello, welcome to my very unorganized and rambling 'about me' page. My name is <b>June</b>, i'm 17 years old, from Serbia. I like physics and mathematics (especially geometry), quantum computers, electronics, computer history, hardware, 3D graphics and rendering, low-level programming, operating systems, game engines, and game development. I'm also into 2D and 3D art, drawing, painting, reading, music theory and composition, YTPMV, Siivagunner ('high quality video game rips'), philosophy, Marxism, chess, modding, gaming, collecting, working out, and watching NFL, and that's already far too many things. I plan on studying Electrical Engineering, specifically physical electronics or nuclear energetics. I've been playing piano since i was 8 and i'd love to start learning saxophone, my second favorite instrument (right behind piano, of course :)). The programming languages i'm most comfortable in are C, <a href="https://www.youtube.com/live/C1pjPv3WJyo">C++</a> and Lua. I also love reading (see the reading section for the books). The most influential work in my life is <b>Homestuck</b>, though besides that i don't read much fiction. One of my main literary interests is Marxism, and i'm a Left-Communist myself.</p>
+
+  <p>I'm one of the co-creators of <a href="https://fishyogurtbacteriavirus.neocities.org/">fishyogurtbacteriavirus</a>, a creative group that focuses on video game projects. In my free time (i don't have a lot of it) i play piano and make <a href="https://www.youtube.com/@serbianknifefightytpmv">YTPMV and mashup/cover music</a>, sometimes even original music! I've been a participant of the Technical Sciences program at <a href="https://petnica.rs/">Petnica Research Center</a> since <b>2026</b>. I love collecting old hardware of any type: peripherals, old terminals, computers, electronic instruments, and so on. I compete in mathematics and physics olympiads in my country (Serbia) and have won multiple medals. I still love playing games (see below), but nowadays i don't play a whole lot; 90% of the time i'm playing <a href="https://www.chess.com/member/serbianknifefight">Chess</a> or Super Smash Bros. Melee.</p>
+
+  <details class="tree-folder" open>
+    <summary>favorites/</summary>
+    <div class="tree-kv"><span class="tree-key">games</span>Metal Gear Solid 2, Undertale, Terraria, LSD: Dream Emulator, Barotrauma, Mindustry, Fractal Block World, Fallout: New Vegas, Hollow Knight, Dark Souls 2, Deltarune, LISA, Yume Nikki</div>
+    <details class="tree-item">
+      <summary>albums <span class="tree-note">(chart, click to enlarge)</span></summary>
+      <img src="chart(9).png" alt="Favorite albums chart" class="expandable-img">
+    </details>
+    <div class="tree-kv"><span class="tree-key">ytpmvers</span><a href="https://www.youtube.com/@ColtonWatson">Colton Watson</a>, <a href="https://www.youtube.com/@resampler">Cake</a>, <a href="https://www.youtube.com/@meltdrum">Meltdrum</a></div>
+    <div class="tree-kv"><span class="tree-key">anime</span>Jojo's Bizarre Adventure, Neon Genesis Evangelion, Cowboy Bebop</div>
+    <div class="tree-kv"><span class="tree-key">animals</span>Pigeons and Raccoons</div>
+    <div class="tree-kv"><span class="tree-key">color</span><span style="color:#2e7d32;">Green</span></div>
+  </details>
+
+</div>
+
+<div class="prometheus">
+  <span id="lastmod"></span>
+  <a href="https://github.com/SerbianKnifeFight">source</a>
+</div>
+
+<div class="lightbox-overlay" id="lightbox">
+  <span class="lightbox-close">&times;</span>
+  <img id="lightbox-img" src="" alt="">
 </div>
 
 <script>
+const lastmodEl = document.getElementById('lastmod');
+if (lastmodEl) {
+  const lm = new Date(document.lastModified);
+  lastmodEl.textContent = 'updated ' + lm.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+}
+
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightbox-img');
+function openLightbox(src, alt) {
+  lightboxImg.src = src;
+  lightboxImg.alt = alt;
+  lightbox.classList.add('open');
+}
+function closeLightbox() {
+  lightbox.classList.remove('open');
+  lightboxImg.src = '';
+}
+lightbox.addEventListener('click', closeLightbox);
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+document.querySelectorAll('.expandable-img').forEach(img => {
+  img.addEventListener('click', () => openLightbox(img.src, img.alt));
+});
+
 const canvas = document.getElementById("bestagon");
 const ctx = canvas.getContext("2d");
 
@@ -221,36 +315,6 @@ function animate() {
   requestAnimationFrame(animate);
 }
 animate();
-
-document.addEventListener("DOMContentLoaded", () => {
-  const toggle = document.querySelector(".album-toggle");
-  const container = document.querySelector(".image-container");
-  const img = document.querySelector(".expandable-img");
-  const modal = document.getElementById("image-modal");
-  const modalImg = document.getElementById("modal-img");
-  const modalClose = document.querySelector(".modal-close");
-
-  toggle.addEventListener("click", () => {
-    container.classList.toggle("show");
-  });
-
-  img.addEventListener("click", (e) => {
-    e.stopPropagation();
-    const fullResUrl = img.getAttribute("data-fullsrc");
-    modal.style.display = "flex";
-    modalImg.src = fullResUrl;
-  });
-
-  modalClose.addEventListener("click", () => {
-    modal.style.display = "none";
-  });
-
-  modal.addEventListener("click", (e) => {
-    if (e.target === modal) {
-      modal.style.display = "none";
-    }
-  });
-});
 </script>
 
 </body>
