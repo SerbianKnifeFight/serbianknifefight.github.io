@@ -62,95 +62,47 @@ body {
 
 .tree-nav {
   width: fit-content;
-  min-width: 240px;
-  max-width: 420px;
+  min-width: 178px;
   flex-shrink: 0;
   background: #e2dfc9;
   border-right: 1px solid #b3af8f;
-  padding: 14px 20px 14px 14px;
-  font-size: 14.5px;
+  padding: 12px 16px 12px 10px;
+  font-size: 14px;
 }
 .tree-root {
   font-size: 11px;
   color: #6b6850;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
   white-space: nowrap;
 }
-
-.tree-nav ul.ftree,
-.tree-nav ul.ftree ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-.tree-nav ul.ftree ul {
-  padding-left: 1.15em;
-}
-.tree-nav ul.ftree li {
-  position: relative;
-  padding-left: 1.15em;
-}
-.tree-nav ul.ftree li::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 0;
-  height: 26px;
-  border-left: 1px dotted #8c8760;
-}
-.tree-nav ul.ftree li:last-child::before {
-  height: 13px;
-}
-.tree-nav ul.ftree li::after {
-  content: "";
-  position: absolute;
-  top: 13px;
-  left: 0;
-  width: 1.15em;
-  height: 0;
-  border-top: 1px dotted #8c8760;
-}
-
-.tree-nav ul.ftree a,
-.tree-nav ul.ftree summary {
+.tree-nav a {
   display: block;
-  height: 26px;
-  line-height: 26px;
+  padding: 3px 0;
   color: #000;
   text-decoration: none;
   white-space: nowrap;
-  cursor: pointer;
 }
-.tree-nav ul.ftree a:hover,
-.tree-nav ul.ftree summary:hover { background: #d6d3b5; }
-
-.tree-nav details.nav-folder { margin: 0; }
-.tree-nav details.nav-folder > summary { list-style: none; }
-.tree-nav details.nav-folder > summary::-webkit-details-marker { display: none; }
-.tree-nav details.nav-folder > summary::marker { content: ""; }
-.tree-nav details.nav-folder > summary::before {
-  content: "▸";
-  display: inline-block;
-  width: 1em;
+.tree-nav a .tc {
+  white-space: pre;
   color: #8c8760;
 }
-.tree-nav details.nav-folder[open] > summary::before { content: "▾"; }
-
-.tree-nav .nav-sub { font-size: 13px; color: #29291f; }
-.tree-nav .nav-sub2 { font-size: 12.5px; color: #4a4834; }
-.tree-nav .nav-top.active { font-weight: bold; color: #b5450c; }
+.tree-nav a.nav-sub {
+  font-size: 11px;
+  color: #29291f;
+}
+.tree-nav a:hover { background: #d6d3b5; }
+.tree-nav a.nav-top.active { font-weight: bold; color: #b5450c; }
 
 .content-inner {
   flex: 1;
   min-width: 0;
   padding: 18px 20px 26px;
-  font-size: 14.5px;
+  font-size: 14px;
   line-height: 1.55;
 }
 
 .content-inner h1 {
-  font-size: 23px;
+  font-size: 21px;
   margin: 0 0 10px;
 }
 
@@ -198,7 +150,7 @@ details.tree-item > summary {
   cursor: pointer;
   list-style: none;
   padding: 3px 0;
-  font-size: 14.5px;
+  font-size: 14px;
   position: relative;
   padding-left: 16px;
 }
@@ -234,7 +186,7 @@ details iframe {
 }
 .tree-key {
   display: inline-block;
-  width: 78px;
+  width: 72px;
   color: #6b6850;
 }
 
@@ -254,7 +206,7 @@ details iframe {
   list-style: none;
   margin: 4px 0 6px 18px;
   padding: 0;
-  font-size: 13px;
+  font-size: 12.5px;
 }
 .tree-list li {
   margin: 2px 0;
@@ -292,7 +244,7 @@ details iframe {
   cursor: zoom-in;
 }
 .art-item figcaption {
-  font-size: 12.5px;
+  font-size: 11.5px;
   line-height: 1.35;
   margin-top: 4px;
 }
@@ -358,15 +310,8 @@ details iframe {
     padding: 8px 10px;
   }
   .tree-root { width: 100%; margin-bottom: 2px; }
-  .tree-nav ul.ftree,
-  .tree-nav ul.ftree li,
-  .tree-nav details.nav-folder { display: contents; }
-  .tree-nav ul.ftree li::before,
-  .tree-nav ul.ftree li::after,
-  .tree-nav details.nav-folder > summary::before { display: none; }
-  .tree-nav details.nav-folder > ul { display: none; }
-  .tree-nav ul.ftree a,
-  .tree-nav ul.ftree summary { padding: 2px 0; height: auto; }
+  .tree-nav a { padding: 2px 0; }
+  .tree-nav a.nav-sub { display: none; }
 }
 
 @media (max-width: 480px) {
@@ -392,44 +337,15 @@ details iframe {
 
 <nav class="tree-nav">
   <div class="tree-root">serbianknifefight.net</div>
-  <ul class="ftree">
-    <li><a href="#index" data-section="index" class="nav-top active">index</a></li>
-    <li>
-      <details class="nav-folder" open>
-        <summary data-section="projects" class="nav-top">projects/</summary>
-        <ul>
-          <li><a href="#projects" data-section="projects" data-target="fygbv" class="nav-sub">fishyogurtbacteriavirus/</a></li>
-          <li><a href="#projects" data-section="projects" data-target="music" class="nav-sub">music/</a></li>
-          <li>
-            <details class="nav-folder">
-              <summary data-section="projects" data-target="soft" class="nav-sub">software/</summary>
-              <ul>
-                <li><a href="#projects" data-section="projects" data-target="web" class="nav-sub2">web/</a></li>
-                <li>
-                  <details class="nav-folder">
-                    <summary data-section="projects" data-target="games" class="nav-sub2">games/</summary>
-                    <ul>
-                      <li><a href="#projects" data-section="projects" data-target="roblox" class="nav-sub2">roblox/</a></li>
-                    </ul>
-                  </details>
-                </li>
-              </ul>
-            </details>
-          </li>
-        </ul>
-      </details>
-    </li>
-    <li>
-      <details class="nav-folder">
-        <summary data-section="reading" class="nav-top">reading/</summary>
-        <ul>
-          <li><a href="#reading" data-section="reading" data-target="finished" class="nav-sub">finished/</a></li>
-          <li><a href="#reading" data-section="reading" data-target="planned" class="nav-sub">planned/</a></li>
-        </ul>
-      </details>
-    </li>
-    <li><a href="#art" data-section="art" class="nav-top">art/</a></li>
-  </ul>
+  <a href="#index" data-section="index" class="nav-top active"><span class="tc">├── </span>index</a>
+  <a href="#projects" data-section="projects" class="nav-top"><span class="tc">├── </span>projects/</a>
+  <a href="#projects" data-section="projects" data-target="fygbv" class="nav-sub"><span class="tc">│   └── </span>fishyogurtbacteriavirus/</a>
+  <a href="#projects" data-section="projects" data-target="music" class="nav-sub"><span class="tc">│   ├── </span>music/</a>
+  <a href="#projects" data-section="projects" data-target="soft" class="nav-sub"><span class="tc">│   ├── </span>software/</a>
+  <a href="#reading" data-section="reading" class="nav-top"><span class="tc">├── </span>reading/</a>
+  <a href="#reading" data-section="reading" data-target="finished" class="nav-sub"><span class="tc">│   ├── </span>finished/</a>
+  <a href="#reading" data-section="reading" data-target="planned" class="nav-sub"><span class="tc">│   └── </span>planned/</a>
+  <a href="#art" data-section="art" class="nav-top"><span class="tc">└── </span>art/</a>
 </nav>
 
 <div class="content-inner" id="content"><noscript>This site needs JavaScript enabled to display its content.</noscript></div>
@@ -520,7 +436,7 @@ projects: `
 
 <details class="tree-folder" id="soft">
   <summary>software/</summary>
-  <details class="tree-folder" id="web">
+  <details class="tree-folder">
 					<summary>web/</summary>
 					<details class="tree-item">
 						   <summary>serbianknifefight.net <span class="tree-date">2025 & ongoing</span></summary>
@@ -542,7 +458,7 @@ projects: `
 			<summary>MS Paint Doom <span class="tree-date">2022</span></summary>
 			<p><a href="https://gamejolt.com/games/MSPDOOM/698382">MS Paint Doom</a> was a 're-imagining' of Dumpsters Doom kind of. I made it when i was 13, it took longer to create than Dumpsters Doom but not by a lot. It never received an Episode 2 or 3 but it received an Easter, April Fools and Halloween limited-edition updates. MSPD 2 was planned aswell but was ultimately scrapped and replaced by another game that took 3 months to make this time but was also scrapped.</p>
 		  </details>
-		   <details class="tree-folder" id="roblox">
+		   <details class="tree-folder">
 					<summary>roblox/</summary>
 					<details class="tree-item">
 					  <summary>GreenBaseplate <span class="tree-date">2021</span></summary>
@@ -636,14 +552,14 @@ art: `
 function showSection(key) {
   const el = document.getElementById('content');
   el.innerHTML = sections[key] || sections.index;
-  document.querySelectorAll('.tree-nav .nav-top').forEach(a => {
+  document.querySelectorAll('.tree-nav a.nav-top').forEach(a => {
     a.classList.toggle('active', a.dataset.section === key);
   });
 }
 
-document.querySelectorAll('.tree-nav [data-section]').forEach(link => {
+document.querySelectorAll('.tree-nav a').forEach(link => {
   link.addEventListener('click', e => {
-    if (link.tagName === 'A') e.preventDefault();
+    e.preventDefault();
     const key = link.dataset.section;
     const target = link.dataset.target;
     showSection(key);
@@ -651,11 +567,6 @@ document.querySelectorAll('.tree-nav [data-section]').forEach(link => {
       const el = document.getElementById(target);
       if (el) {
         el.open = true;
-        let anc = el.parentElement ? el.parentElement.closest('details') : null;
-        while (anc) {
-          anc.open = true;
-          anc = anc.parentElement ? anc.parentElement.closest('details') : null;
-        }
         el.scrollIntoView({ block: 'start', behavior: 'smooth' });
       }
     }
