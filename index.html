@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="icon" type="image/x-icon" href="Foldername/sitecon.ico">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>SerbianKnifeFight</title>
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: "Courier New", monospace;
+  background: #000;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+#bestagon {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.site-frame {
+  width: 100%;
+}
+
+.topbar {
+  background: #ff5d38;
+  padding: 5px 12px;
+  border-bottom: 3px solid #b56500;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.topbar a {
+  color: #000;
+  text-decoration: none;
+  font-size: clamp(12px, 3vw, 15px);
+}
+.topbar a::before {
+  content: "/";
+  opacity: .55;
+  margin-right: 1px;
+}
+.topbar a:hover { text-decoration: underline; }
+
+.content-box {
+  background: #f7f7e1;
+  color: #000;
+  width: 100%;
+  display: flex;
+  min-height: 360px;
+}
+
+/* --- tree nav (now with nested sub-items) --- */
+.tree-nav {
+  width: 178px;
+  flex-shrink: 0;
+  background: #e2dfc9;
+  border-right: 1px solid #b3af8f;
+  padding: 12px 10px;
+  font-size: 13px;
+}
+.tree-root {
+  font-size: 10px;
+  color: #6b6850;
+  margin-bottom: 8px;
+  word-break: break-all;
+}
+.tree-nav a {
+  display: block;
+  padding: 3px 0;
+  color: #000;
+  text-decoration: none;
+  word-break: break-all;
+}
+.tree-nav a .tc {
+  white-space: pre;
+  color: #8c8760;
+}
+.tree-nav a.nav-sub {
+  font-size: 11px;
+  color: #29291f;
+}
+.tree-nav a:hover { background: #d6d3b5; }
+.tree-nav a.nav-top.active { font-weight: bold; color: #b5450c; }
+
+/* --- content --- */
+.content-inner {
+  flex: 1;
+  min-width: 0;
+  padding: 18px 20px 26px;
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.content-inner h1 {
+  font-size: 20px;
+  margin: 0 0 10px;
+}
+
+.content-inner > p,
+details p,
+.tree-row {
+  font-family: Verdana, sans-serif;
+  font-size: 12.5px;
+  line-height: 1.5;
+  margin: 0 0 10px;
+}
+
+.content-inner > p,
+.tree-row {
+  max-width: 660px;
+}
+details p {
+  max-width: 540px;
+}
+.tree-kv {
+  max-width: 620px;
+}
+
+.content-inner a {
+  color: #b5450c;
+  text-decoration: none;
+}
+.content-inner a:hover { text-decoration: underline; }
+
+.note {
+  font-size: 11px;
+  font-style: italic;
+  color: #6b6850;
+  margin: -4px 0 12px !important;
+}
+
+details.tree-folder,
+details.tree-item {
+  margin: 3px 0;
+  padding-left: 12px;
+  border-left: 1px dotted #b3af8f;
+}
+details.tree-folder > summary,
+details.tree-item > summary {
+  cursor: pointer;
+  list-style: none;
+  padding: 3px 0;
+  font-size: 13px;
+  position: relative;
+  padding-left: 16px;
+}
+details.tree-folder > summary::-webkit-details-marker,
+details.tree-item > summary::-webkit-details-marker { display: none; }
+details.tree-folder > summary::before,
+details.tree-item > summary::before {
+  content: "▸";
+  position: absolute;
+  left: 0;
+  color: #8c8760;
+}
+details.tree-folder[open] > summary::before,
+details.tree-item[open] > summary::before { content: "▾"; }
+details.tree-folder > summary { font-weight: bold; }
+details.tree-folder > summary:hover,
+details.tree-item > summary:hover { background: rgba(0,0,0,.04); }
+
+details p { margin: 4px 0 6px 18px; }
+
+details iframe {
+  display: block;
+  margin: 6px 0 6px 18px;
+  max-width: calc(100% - 18px);
+  border: 1px solid #000;
+}
+
+.tree-row { margin: 4px 0 6px 18px; }
+
+.tree-kv {
+  font-size: 12.5px;
+  margin: 2px 0 2px 18px;
+}
+.tree-key {
+  display: inline-block;
+  width: 70px;
+  color: #6b6850;
+}
+
+.tree-date, .tree-count {
+  font-size: 11px;
+  color: #6b6850;
+  font-weight: normal;
+  margin-left: 4px;
+}
+
+.tree-note {
+  font-style: italic;
+  color: #6b6850;
+}
+
+.tree-list {
+  list-style: none;
+  margin: 4px 0 6px 18px;
+  padding: 0;
+  font-size: 12px;
+}
+.tree-list li {
+  margin: 2px 0;
+  padding-left: 14px;
+  position: relative;
+}
+.tree-list li::before {
+  content: "·";
+  position: absolute;
+  left: 0;
+  color: #8c8760;
+}
+
+.badges {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 16px;
+}
+.badges img { max-height: 35px; width: auto; }
+
+/* --- art grid + lightbox --- */
+.art-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 12px;
+  max-width: 760px;
+}
+.art-item { margin: 0; }
+.art-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border: 1px solid #000;
+  cursor: zoom-in;
+}
+.art-item figcaption {
+  font-size: 11px;
+  line-height: 1.35;
+  margin-top: 4px;
+}
+
+.lightbox-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.9);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  z-index: 1000;
+  cursor: zoom-out;
+}
+.lightbox-overlay.open { display: flex; }
+.lightbox-overlay img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border: 2px solid #f7f7e1;
+}
+.lightbox-close {
+  position: fixed;
+  top: 12px;
+  right: 18px;
+  color: #f7f7e1;
+  font-size: 26px;
+  line-height: 1;
+  z-index: 1001;
+  cursor: pointer;
+}
+
+.prometheus {
+  background: #999;
+  padding: 4px 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.prometheus span {
+  font-size: 11px;
+  color: #000;
+}
+.prometheus a {
+  color: #000;
+  text-decoration: none;
+  font-size: 11px;
+}
+.prometheus a:hover { text-decoration: underline; }
+
+@media (max-width: 700px) {
+  .content-box { flex-direction: column; }
+  .tree-nav {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid #b3af8f;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 2px 16px;
+    padding: 8px 10px;
+  }
+  .tree-root { width: 100%; margin-bottom: 2px; }
+  .tree-nav a { padding: 2px 0; }
+  .tree-nav a.nav-sub { display: none; }
+}
+
+@media (max-width: 480px) {
+  .topbar { justify-content: center; gap: 10px; }
+  .content-inner { padding: 14px 14px 20px; }
+}
+</style>
+
+</head>
+
+<body>
+<canvas id="bestagon"></canvas>
+
+<div class="site-frame">
+
+<div class="topbar">
+  <a href="index.html">home</a>
+  <a href="aboutme.html">about</a>
+  <a href="Blog.html">blog</a>
+</div>
+
+<div class="content-box">
+
+<nav class="tree-nav">
+  <div class="tree-root">serbianknifefight.net</div>
+  <a href="#index" data-section="index" class="nav-top active"><span class="tc">├── </span>index</a>
+  <a href="#projects" data-section="projects" class="nav-top"><span class="tc">├── </span>projects/</a>
+  <a href="#projects" data-section="projects" data-target="music" class="nav-sub"><span class="tc">│   ├── </span>music/</a>
+  <a href="#projects" data-section="projects" data-target="games" class="nav-sub"><span class="tc">│   ├── </span>games/</a>
+  <a href="#projects" data-section="projects" data-target="fygbv" class="nav-sub"><span class="tc">│   └── </span>fishyogurtbacteriavirus/</a>
+  <a href="#reading" data-section="reading" class="nav-top"><span class="tc">├── </span>reading/</a>
+  <a href="#reading" data-section="reading" data-target="finished" class="nav-sub"><span class="tc">│   ├── </span>finished/</a>
+  <a href="#reading" data-section="reading" data-target="planned" class="nav-sub"><span class="tc">│   └── </span>planned/</a>
+  <a href="#art" data-section="art" class="nav-top"><span class="tc">└── </span>art/</a>
+</nav>
+
+<div class="content-inner" id="content"><noscript>This site needs JavaScript enabled to display its content.</noscript></div>
+
+</div>
+
+<div class="prometheus">
+  <span id="lastmod"></span>
+  <a href="https://github.com/SerbianKnifeFight">source</a>
+</div>
+
+</div>
+
+<div class="lightbox-overlay" id="lightbox">
+  <span class="lightbox-close">&times;</span>
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+<script>
+const sections = {
+
+index: `
+<h1>serbianknifefight.net</h1>
+<p class="note">under construction, it changes all the time</p>
+<p>Welcome to my website. I'm June (A.K.A SerbianKnifeFight), i do more than a couple of things on <a href="https://en.wikipedia.org/wiki/Internets">the internets</a>. This site is my corner of the internet (Filled out the personal site contractual obligation where it states i need to put those words on my website). I use this website to share my projects, primarily computer stuff.</p>
+<p>I'm a computer wizard, i'm 50% of <a href="https://fishyogurtbacteriavirus.neocities.org/">fishyogurtbacteriavirus</a>, aspiring disc jockey, and i do <a href="https://www.youtube.com/@serbianknifefightytpmv">YTPMV</a><br>Participant of the Technical Sciences program at <a href="https://petnica.rs/">Petnica Research Center</a> :)</p>
+
+<details class="tree-folder">
+  <summary>setup/</summary>
+  <div class="tree-kv"><span class="tree-key">os</span><a href="https://linuxmint.com/download_lmde.php">Linux Mint Debian Edition</a>, <a href="https://www.gentoo.org/">Gentoo Linux</a></div>
+  <div class="tree-kv"><span class="tree-key">browser</span><a href="https://www.firefox.com/en-US/">Firefox</a>, <a href="https://librewolf.net/">Librewolf</a></div>
+  <div class="tree-kv"><span class="tree-key">2d</span><a href="https://www.gimp.org/">GIMP</a>, Clip Studio Paint, <a href="https://captain4lk.itch.io/slk-img2pixel">img2pixel</a></div>
+  <div class="tree-kv"><span class="tree-key">text</span><a href="https://neovim.io/">Neovim</a>, <a href="https://notepad-plus-plus.org/">Notepad++</a></div>
+  <div class="tree-kv"><span class="tree-key">3d</span><a href="https://www.blender.org/">Blender</a>, <a href="https://richwhitehouse.com/index.php?content=inc_projects.php&showproject=91">Noesis</a></div>
+  <div class="tree-kv"><span class="tree-key">audio</span><a href="https://www.audacityteam.org/">Audacity</a>, FL Studio, <a href="https://www.polyphone.io/">Polyphone</a>, Melodyne, <a href="https://www.reaper.fm/">Reaper</a></div>
+  <div class="tree-kv"><span class="tree-key">video</span><a href="https://www.blackmagicdesign.com/products/davinciresolve">DaVinci Resolve</a>, <a href="https://kdenlive.org/">Kdenlive</a>, Sony Vegas 13, Adobe After Effects</div>
+  <div class="tree-kv"><span class="tree-key">code</span><a href="https://vscodium.com/#install">VSCodium</a>, <a href="https://www.arduino.cc/en/software/">Arduino IDE</a> <span class="tree-note">(arduino only)</span></div>
+  <div class="tree-kv"><span class="tree-key">other</span><a href="https://www.winehq.org/">Wine</a>, <a href="https://waydro.id/">Waydroid</a></div>
+</details>
+
+<details class="tree-folder">
+  <summary>links/</summary>
+  <div class="tree-kv"><a href="https://www.youtube.com/@serbianknifefightdev">youtube</a></div>
+  <div class="tree-kv"><a href="https://github.com/SerbianKnifeFight">github</a></div>
+  <div class="tree-kv"><a href="https://bsky.app/profile/serbianknifefight.neocities.org">bluesky</a></div>
+  <div class="tree-kv"><a href="https://steamcommunity.com/id/SerbianKnifeF1ght/">steam</a></div>
+  <div class="tree-kv"><a href="https://www.chess.com/member/serbianknifefight">chess.com</a></div>
+  <div class="tree-kv"><a href="https://fishyogurtbacteriavirus.itch.io">itch.io</a> <span class="tree-note">fishyogurtbacteriavirus</span></div>
+  <div class="tree-kv"><a href="https://gamejolt.com/@FISHYOGURTBACTERIAVIRUS">gamejolt</a> <span class="tree-note">fishyogurtbacteriavirus</span></div>
+  <div class="tree-kv"><a href="https://otodb.net/profile/SerbianKnifeFight">otodb.net</a></div>
+  <div class="tree-kv"><span class="tree-key">email</span><a href="mailto:serbianknifefightbusiness@gmail.com">serbianknifefightbusiness@gmail.com</a></div>
+  <div class="tree-kv"><span class="tree-key">matrix</span>@serbianknifefight:matrix.org</div>
+  <div class="tree-kv"><span class="tree-key">telegram</span>@serbianknifefight</div>
+</details>
+
+<div class="badges">
+  <a href="https://petnica.rs/"><img src="petnica.png" alt="Petnica Research Center"></a>
+  <img src="teh.gif" alt="">
+  <a href="https://iwf.gay/"><img src="iwf15.gif" alt="I Love Webrings"></a>
+</div>
+`,
+
+projects: `
+<h1>projects/</h1>
+<p>Here i record all my projects, alongside notes. Let's see what'll end up here..</p>
+
+<details class="tree-folder" id="music">
+  <summary>music/</summary>
+  <p>I'm an amatuer music producer and composer, i like making original compositions, remixes, arrangements, and YTPMV of varying quality.</p>
+  <div class="tree-row"><a href="https://serbianknifefight.bandcamp.com/">Bandcamp</a> — this is where i upload full mix original albums in high quality audio, most of these do get reuploaded on my <a href="https://www.youtube.com/@serbianknifefightdev">main channel</a>, they're mostly thematic - made specifically for some project</div>
+  <div class="tree-row"><a href="https://www.youtube.com/@serbianknifefightytpmv">2nd channel</a> — this is where i primarily upload YTPMV, but you may also find other arrangements that i deemed weren't album worthy, or additional content relating to the bandcamp/main channel music</div>
+  <div class="tree-row"><a href="https://soundcloud.com/serbianknifefight">Soundcloud/Daftpunkfan2009</a> — random mixes i made over a weekend, very low quality stuff lol, more casual production with no real intention i guess</div>
+</details>
+
+<details class="tree-folder" id="games">
+  <summary>games/</summary>
+  <details class="tree-item">
+    <summary>Dumpsters Doom <span class="tree-date">2019</span></summary>
+    <p><a href="https://gamejolt.com/games/DDOOM/553492">Dumpsters Doom</a> was a game i made when i was 10 years old, it's a recreation of DOOM (1993)'s first two episodes with poorly made audio-visuals.</p>
+    <p>It's inspired by <a href="https://bit.ly/3ekFAxl">decino.wad</a> by decino. Originally supposed to have 3 episodes but i never ended up finishing the 3rd one.</p>
+  </details>
+  <details class="tree-item">
+    <summary>MS Paint Doom <span class="tree-date">2022</span></summary>
+    <p><a href="https://gamejolt.com/games/MSPDOOM/698382">MS Paint Doom</a> was a 're-imagining' of Dumpsters Doom kind of. I made it when i was 13, it took longer to create than Dumpsters Doom but not by a lot. It never received an Episode 2 or 3 but it received an Easter, April Fools and Halloween limited-edition updates. MSPD 2 was planned aswell but was ultimately scrapped and replaced by another game that took 3 months to make this time but was also scrapped.</p>
+  </details>
+  <details class="tree-folder">
+    <summary>roblox/</summary>
+    <details class="tree-item">
+      <summary>GreenBaseplate <span class="tree-date">2021</span></summary>
+      <p><a href="https://www.roblox.com/games/6500120623/GreenBaseplate">GreenBaseplate</a> was a roblox game i made with a couple of my closest online friends, it's a minigame-based game without any end objective. We supported the development until around the beginning of 2022 when we decided to stop updating it. It's definetly one of my most impactful projects as it's the first time i've been in the lead for a collaborative project. Heavily inspired by RBLXWare which was one of my favorite games at that moment, the trend of constant inspiration never stops with me.</p>
+      <p class="tree-note">I can't confirm if the game is age rated, so you most likely can't play.</p>
+    </details>
+    <details class="tree-item">
+      <summary>Roscoe Simulator <span class="tree-date">2022</span></summary>
+      <p class="tree-note">no notes yet</p>
+    </details>
+  </details>
+</details>
+
+<details class="tree-folder" id="fygbv">
+  <summary>fishyogurtbacteriavirus/</summary>
+  <p><a href="https://fishyogurtbacteriavirus.neocities.org/">fishyogurtbacteriavirus</a> is a creative studio i co-created with my best friend <a href="https://spimbili.blogspot.com/">spimbili</a> and multiple other contributors, we are a group of creatives making video games and other visual arts.</p>
+  <details class="tree-item">
+    <summary title="I GOONED AT MY GRANDMAS CRIB AT 2 AM WHILE MY MOM WASN'T WATCHING">IGAMGCA2AMWMMWW <span class="tree-date">2025</span></summary>
+    <p><a href="https://fishyogurtbacteriavirus.itch.io/i-gooned-at-my-grandmas-crib-at-2-am-while-my-mom-wasnt-watching">I GOONED AT MY GRANDMAS CRIB AT 2 AM WHILE MY MOM WASN'T WATCHING</a> is a modern take on the classic fnaf formula, with original mechanics and characters, fast-paced and hectic gameplay.</p>
+    <p>Development started on 9/10/2025 and finished on 12/21/2025. Created by SerbianKnifeFight, Spimbili, W1theredsoul, Torneix and Luka.</p>
+    <iframe height="167" loading="lazy" src="https://itch.io/embed/4135015" width="552" title="I GOONED AT MY GRANDMAS CRIB AT 2 AM WHILE MY MOM WASN'T WATCHING by fishyogurtbacteriavirus"></iframe>
+    <p>It's stretching the definition of 'fnaf fan-game', i'd like to call it a complete reimagining of the blueprints, because to me honestly fnaf (Especially the early games) are just sort of blank slates to add onto, and we sure did. My personal issue with a lot of fan games is that they don't innovate, or give new takes on the fnaf formula, it's just kinda the same.</p>
+    <div class="tree-kv"><a href="https://gamejolt.com/games/goonedatcrib/1022373">Gamejolt page</a></div>
+    <div class="tree-kv"><a href="https://www.youtube.com/playlist?list=PLNtqTYk7xso7f1pwKARPI0r4fONgELQfg">All videos</a></div>
+  </details>
+</details>
+`,
+
+reading: `
+<h1>reading/</h1>
+<p>This is where i share books/stories i've read. I'd like to read more than i do (It's like that with every hobby.), so this page kinda serves as motivation to read books and think about them critically. I'll try to write a review/share notes for each of the books read. (Takes time to write so be patient..)</p>
+
+<details class="tree-folder" id="finished">
+  <summary>finished/ <span class="tree-count">(17)</span></summary>
+  <ul class="tree-list">
+    <li>Honore de Balzac — Le Père Goriot (1835)</li>
+    <li>Friedrich Engels — The Principles of Communism (1847)</li>
+    <li>Friedrich Engels, Karl Marx — The Communist Manifesto (1848)</li>
+    <li>Karl Marx — The Civil War in France (1871)</li>
+    <li>Karl Marx — Critique of the Gotha Program (1875)</li>
+    <li>Friedrich Engels — Anti-Dühring (1878)</li>
+    <li>Friedrich Engels — Socialism: Utopian and Scientific (1880)</li>
+    <li>Jack London — The Iron Heel (1908)</li>
+    <li>Amadeo Bordiga — The Balkan War (1912)</li>
+    <li>Amadeo Bordiga — Is This the Time to Form “Soviets”? (1919)</li>
+    <li>Amadeo Bordiga — The Democratic Principle (1922)</li>
+    <li>Maney, Hamm, O'Brien — Making the World Work Better: The Ideas That Shaped a Century and a Company (2011)</li>
+    <li>Andrew Hussie — Problem Sleuth (2008)</li>
+    <li>Andrew Hussie — Homestuck (2009)</li>
+    <li>Jack Masters — Poorly Planned Comics (2010)</li>
+    <li>Jon Bois — 17776 (2017)</li>
+    <li>Jon Bois — 20020 (2020)</li>
+  </ul>
+</details>
+
+<details class="tree-folder" id="planned">
+  <summary>planned/ <span class="tree-count">(8)</span></summary>
+  <ul class="tree-list">
+    <li>Petar II Petrović-Njegoš — The Mountain Wreath (1847)</li>
+    <li>Karl Marx — Theories of Surplus Value (1863)</li>
+    <li>Karl Marx — Kapital (1867)</li>
+    <li>Leo Tolstoy — Anna Karenina (1877)</li>
+    <li>Leo Trotsky — The New Course (1923)</li>
+    <li>Leo Trotsky — On Lenin (1924)</li>
+    <li>Leo Trotsky — The Revolution Betrayed (1936)</li>
+    <li>Meša Selimović — Za i protiv Vuka (1967)</li>
+  </ul>
+</details>
+`,
+
+art: `
+<h1>art/</h1>
+<div class="art-grid">
+  <figure class="art-item">
+    <img src="flowers.jpg" alt="Two violets">
+    <figcaption><b>Two violets</b><br>February 12th 2026<br>Graphite, water colors. A4 paper</figcaption>
+  </figure>
+  <figure class="art-item">
+    <img src="pidzen.jpg" alt="White pigeon on cherry blossom branches">
+    <figcaption><b>White pigeon on cherry blossom branches</b><br>January 12th 2026<br>Graphite, water colors, alcoholic markers. A4 paper</figcaption>
+  </figure>
+  <figure class="art-item">
+    <img src="Birb1.jpg" alt="White pigeon">
+    <figcaption><b>White pigeon</b><br>January 11th 2026<br>Graphite and water colors. A5/Ripped A4 paper</figcaption>
+  </figure>
+  <figure class="art-item">
+    <img src="Birb2.jpg" alt="Pigeons">
+    <figcaption><b>Pigeons</b><br>January 11th 2026<br>Graphite and water colors. A5/Ripped A4 paper</figcaption>
+  </figure>
+  <figure class="art-item">
+    <img src="Turing.jpg" alt="Alan Turing portrait">
+    <figcaption><b>Alan Turing portrait</b><br>January 10th 2026<br>Graphite. A5/Ripped A4 paper</figcaption>
+  </figure>
+  <figure class="art-item">
+    <img src="Amadeo.jpg" alt="Amadeo Bordiga portrait">
+    <figcaption><b>Amadeo Bordiga portrait</b><br>January 9th 2026<br>Graphite. A5/Ripped A4 paper</figcaption>
+  </figure>
+</div>
+`
+
+};
+
+function showSection(key) {
+  const el = document.getElementById('content');
+  el.innerHTML = sections[key] || sections.index;
+  document.querySelectorAll('.tree-nav a.nav-top').forEach(a => {
+    a.classList.toggle('active', a.dataset.section === key);
+  });
+}
+
+document.querySelectorAll('.tree-nav a').forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    const key = link.dataset.section;
+    const target = link.dataset.target;
+    showSection(key);
+    if (target) {
+      const el = document.getElementById(target);
+      if (el) {
+        el.open = true;
+        el.scrollIntoView({ block: 'start', behavior: 'smooth' });
+      }
+    }
+    history.replaceState(null, '', '#' + key);
+  });
+});
+
+const startKey = (location.hash || '#index').slice(1);
+showSection(sections[startKey] ? startKey : 'index');
+
+const lastmodEl = document.getElementById('lastmod');
+if (lastmodEl) {
+  const lm = new Date(document.lastModified);
+  lastmodEl.textContent = 'updated ' + lm.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+}
+
+/* --- art lightbox (event delegation, since #content is re-rendered) --- */
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightbox-img');
+function openLightbox(src, alt) {
+  lightboxImg.src = src;
+  lightboxImg.alt = alt;
+  lightbox.classList.add('open');
+}
+function closeLightbox() {
+  lightbox.classList.remove('open');
+  lightboxImg.src = '';
+}
+lightbox.addEventListener('click', closeLightbox);
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+document.getElementById('content').addEventListener('click', e => {
+  const img = e.target.closest('.art-item img');
+  if (img) openLightbox(img.src, img.alt);
+});
+
+/* --- hexagon background (unchanged) --- */
+const canvas = document.getElementById("bestagon");
+const ctx = canvas.getContext("2d");
+
+let w, h;
+function resize() { w = canvas.width = window.innerWidth; h = canvas.height = window.innerHeight; }
+window.addEventListener("resize", resize);
+resize();
+
+const hexSize = 40;
+const hexHeight = Math.sqrt(3) * hexSize;
+let time = 0;
+
+function drawHex(x, y, pulse) {
+  ctx.beginPath();
+  for (let i = 0; i < 6; i++) {
+    const angle = (Math.PI / 3) * i;
+    const px = x + (hexSize + pulse) * Math.cos(angle);
+    const py = y + (hexSize + pulse) * Math.sin(angle);
+    ctx.lineTo(px, py);
+  }
+  ctx.closePath();
+  ctx.strokeStyle = `rgba(255, 255, 255, 0.15)`;
+  ctx.stroke();
+}
+
+function animate() {
+  ctx.clearRect(0, 0, w, h);
+  let pulse = Math.sin(time * 0.02) * 5;
+
+  for (let row = -1; row < h / (hexHeight * 0.75) + 2; row++) {
+    for (let col = -1; col < w / hexSize + 2; col++) {
+      let x = col * hexSize * 1.5;
+      let y = row * hexHeight + (col % 2 ? hexHeight / 2 : 0);
+      drawHex(x, y, pulse);
+    }
+  }
+
+  time++;
+  requestAnimationFrame(animate);
+}
+animate();
+</script>
+
+</body>
+</html>
