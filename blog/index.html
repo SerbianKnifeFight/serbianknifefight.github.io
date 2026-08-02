@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Newsblogletter</title>
+    <link href="/blog/intel.css" rel="stylesheet" type="text/css" media="all">
+  </head>
+  <body>
+   <canvas id="bestagon"></canvas>
+    <header>
+        <h1>Welcome to my blog.</h1>
+        <p class="subtitle">A blog serving as a newsletter on our projects, writing about topics that interest me, and sometimes as a life-update diary/journal.</p>
+    </header>
+
+    
+    <div class="main-content">
+        <div class="blog-entries">
+            <h2 class="year-header">2026</h2>
+            <ul class="post-list">
+                <li class="post-item">
+                    <a href="newsletter/2026/01/01.html" class="post-title">Sample post</a>
+                    <div class="post-date">January 1st, 2026</div>
+                </li>
+            </ul>
+        </div>
+        
+        <div class="sidebar">
+            <h3>Navigation</h3>
+    <ul>
+                <li><a href="https://serbianknifefight.neocities.org/">Main page</a></li>
+                <li><a href="https://serbianknifefight.neocities.org/aboutme">About me</a></li>
+            </ul>
+            
+            <h3>Recent Posts</h3>
+            <ul>
+                <li><a href="newsletter/2026/01/01.html">Sample post</a></li>
+            </ul>
+            <p>1 Post since 2026</p>
+        </div>
+    </div>
+    <script>
+const canvas = document.getElementById("bestagon");
+const ctx = canvas.getContext("2d");
+
+let w, h;
+function resize() { 
+  w = canvas.width = window.innerWidth; 
+  h = canvas.height = window.innerHeight; 
+}
+window.addEventListener("resize", resize);
+resize();
+
+const hexSize = 40;
+const hexHeight = Math.sqrt(3) * hexSize;
+let time = 0;
+
+function drawHex(x, y, pulse) {
+  ctx.beginPath();
+  for (let i = 0; i < 6; i++) {
+    const angle = (Math.PI / 3) * i;
+    const px = x + (hexSize + pulse) * Math.cos(angle);
+    const py = y + (hexSize + pulse) * Math.sin(angle);
+    ctx.lineTo(px, py);
+  }
+  ctx.closePath();
+  ctx.strokeStyle = `rgba(255, 255, 255, 0.15)`;
+  ctx.stroke();
+}
+
+function animate() {
+  ctx.clearRect(0, 0, w, h);
+  let pulse = Math.sin(time * 0.02) * 5;
+
+  for (let row = -1; row < h / (hexHeight * 0.75) + 2; row++) {
+    for (let col = -1; col < w / hexSize + 2; col++) {
+      let x = col * hexSize * 1.5;
+      let y = row * hexHeight + (col % 2 ? hexHeight / 2 : 0);
+      drawHex(x, y, pulse);
+    }
+  }
+
+  time++;
+  requestAnimationFrame(animate);
+}
+animate();
+</script>
+  </body>
+  
+</html>
