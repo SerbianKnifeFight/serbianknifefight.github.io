@@ -102,7 +102,7 @@ body {
   font-family: Verdana, sans-serif;
   font-size: 12.5px;
   line-height: 1.65;
-  margin: 0 0 14px;
+  margin: 0 auto 14px;
   max-width: 680px;
 }
 
@@ -111,6 +111,12 @@ body {
   text-decoration: none;
 }
 .content-box a:hover { text-decoration: underline; }
+
+.tree-wrap {
+  max-width: 680px;
+  margin: 0 auto;
+  text-align: left;
+}
 
 details.tree-folder,
 details.tree-item {
@@ -205,6 +211,9 @@ details.tree-item > summary:hover { background: rgba(0,0,0,.04); }
   border-top: 1px dotted #b3af8f;
   font-size: 11px;
   color: #6b6850;
+  max-width: 680px;
+  margin-left: auto;
+  margin-right: auto;
 }
 .page-footer a {
   color: #6b6850;
@@ -249,18 +258,20 @@ details.tree-item > summary:hover { background: rgba(0,0,0,.04); }
 
     <p>I co-founded <a href="https://fishyogurtbacteriavirus.neocities.org/">fishyogurtbacteriavirus</a>, a small creative collective built around game projects. When i have the time (which isn't often) i play piano or put together <a href="https://www.youtube.com/@serbianknifefightytpmv">YTPMV and mashup covers</a>. Since 2026 i've been part of the Technical Sciences program at <a href="https://petnica.rs/">Petnica Research Center</a>. I collect old hardware - peripherals, terminals, computers, electronic instruments, anything with history behind it. I compete in math and physics olympiads in my country and have taken home a few medals. I'm kind of a gamer, just less than i used to, these days it's mostly <a href="https://www.chess.com/member/serbianknifefight">chess</a> or <a href='https://slippi.gg/user/DVNO-858'>Super Smash Bros. Melee.</a></p>
 
-    <details class="tree-folder" open>
-      <summary>favorites/</summary>
-      <div class="tree-kv"><span class="tree-key">games</span>Metal Gear Solid 2, Undertale, Terraria, LSD: Dream Emulator, Barotrauma, Mindustry, Fractal Block World, Fallout: New Vegas, Hollow Knight, Dark Souls 2, Deltarune, LISA, Yume Nikki</div>
-      <details class="tree-item">
-        <summary>albums <span class="tree-note">(chart, click to enlarge)</span></summary>
-        <img src="muchart.png" alt="Favorite albums chart" class="expandable-img">
+    <div class="tree-wrap">
+      <details class="tree-folder" open>
+        <summary>favorites/</summary>
+        <div class="tree-kv"><span class="tree-key">games</span>Metal Gear Solid 2, Undertale, Terraria, LSD: Dream Emulator, Barotrauma, Mindustry, Fractal Block World, Fallout: New Vegas, Hollow Knight, Dark Souls 2, Deltarune, LISA, Yume Nikki</div>
+        <details class="tree-item">
+          <summary>albums <span class="tree-note">(chart, click to enlarge)</span></summary>
+          <img src="muchart.png" alt="Favorite albums chart" class="expandable-img">
+        </details>
+        <div class="tree-kv"><span class="tree-key">ytpmvers</span><a href="https://www.youtube.com/@meltdrum">Meltdrum</a>, <a href="https://www.youtube.com/@ColtonWatson">Colton Watson</a> & <a href="https://www.youtube.com/@resampler">Cake</a></div>
+        <div class="tree-kv"><span class="tree-key">anime</span>Jojo's Bizarre Adventure, Neon Genesis Evangelion, Cowboy Bebop</div>
+        <div class="tree-kv"><span class="tree-key">animals</span>Pigeons and Raccoons</div>
+        <div class="tree-kv"><span class="tree-key">color</span><span style="color:#2e7d32;">Green</span></div>
       </details>
-      <div class="tree-kv"><span class="tree-key">ytpmvers</span><a href="https://www.youtube.com/@meltdrum">Meltdrum</a>, <a href="https://www.youtube.com/@ColtonWatson">Colton Watson</a> & <a href="https://www.youtube.com/@resampler">Cake</a></div>
-      <div class="tree-kv"><span class="tree-key">anime</span>Jojo's Bizarre Adventure, Neon Genesis Evangelion, Cowboy Bebop</div>
-      <div class="tree-kv"><span class="tree-key">animals</span>Pigeons and Raccoons</div>
-      <div class="tree-kv"><span class="tree-key">color</span><span style="color:#2e7d32;">Green</span></div>
-    </details>
+    </div>
 
     <div class="page-footer">
       <span id="lastmod"></span>
