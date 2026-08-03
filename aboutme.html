@@ -14,6 +14,7 @@ body {
   background: #000;
   overflow-x: hidden;
   overflow-y: auto;
+  min-height: 100vh;
 }
 
 #bestagon {
@@ -26,35 +27,47 @@ body {
   pointer-events: none;
 }
 
-.topbar {
-  background: #ff5d38;
-  padding: 5px 12px;
-  border-bottom: 3px solid #b56500;
+.nav-buttons {
+  position: fixed;
+  top: 18px;
+  right: 24px;
   display: flex;
-  flex-wrap: wrap;
-  gap: 14px;
+  gap: 8px;
+  z-index: 20;
 }
-.topbar a {
+.nav-buttons a {
+  background: #ff5d38;
   color: #000;
   text-decoration: none;
-  font-size: clamp(12px, 3vw, 15px);
+  font-size: clamp(11px, 2.5vw, 13px);
+  padding: 5px 12px;
+  border: 2px solid #b56500;
+  border-radius: 3px;
 }
-.topbar a::before {
+.nav-buttons a::before {
   content: "/";
   opacity: .55;
   margin-right: 1px;
 }
-.topbar a:hover { text-decoration: underline; }
-.topbar a.active { font-weight: bold; text-decoration: underline; }
+.nav-buttons a:hover { background: #ff7454; }
+.nav-buttons a.active { font-weight: bold; text-decoration: underline; }
+
+.page-wrap {
+  max-width: 920px;
+  width: 94%;
+  margin: 56px auto 48px;
+}
 
 .content-box {
   background: #f7f7e1;
   color: #000;
   width: 100%;
   min-height: 360px;
-  padding: 24px 22px 28px;
+  padding: 26px 26px 22px;
   font-size: 13px;
   line-height: 1.6;
+  border: 1px solid #000;
+  box-shadow: 0 6px 0 rgba(0,0,0,.35);
 }
 
 .title-row {
@@ -67,7 +80,6 @@ body {
 .title-row img {
   max-width: 100px;
   height: auto;
-  border: 1px solid #000;
 }
 .content-box h1 {
   font-size: 20px;
@@ -182,25 +194,28 @@ details.tree-item > summary:hover { background: rgba(0,0,0,.04); }
   cursor: pointer;
 }
 
-.prometheus {
-  background: #999;
-  padding: 4px 12px;
+.page-footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-.prometheus span { font-size: 11px; color: #000; }
-.prometheus a {
-  color: #000;
-  text-decoration: none;
+  margin-top: 16px;
+  padding-top: 10px;
+  border-top: 1px dotted #b3af8f;
   font-size: 11px;
+  color: #6b6850;
 }
-.prometheus a:hover { text-decoration: underline; }
+.page-footer a {
+  color: #6b6850;
+  text-decoration: none;
+}
+.page-footer a:hover { text-decoration: underline; }
 
 @media (max-width: 600px) {
-  .content-box { padding: 16px 14px 20px; }
+  .page-wrap { margin: 64px auto 32px; }
+  .content-box { padding: 18px 16px 16px; }
   .title-row img { max-width: 76px; }
   .content-box h1 { font-size: 18px; }
+  .nav-buttons { top: 12px; right: 12px; }
 }
 </style>
 </head>
@@ -208,47 +223,49 @@ details.tree-item > summary:hover { background: rgba(0,0,0,.04); }
 
 <canvas id="bestagon"></canvas>
 
-<div class="topbar">
+<div class="nav-buttons">
   <a href="index.html">home</a>
   <a href="aboutme.html" class="active">about</a>
   <a href="Blog.html">blog</a>
 </div>
 
-<div class="content-box">
+<div class="page-wrap">
+  <div class="content-box">
 
-  <div class="title-row">
-    <img src="sitecon.png">
-    <h1>about me</h1>
-  </div>
+    <div class="title-row">
+      <img src="sitecon.png" alt="">
+      <h1>about me</h1>
+    </div>
 
-  <img src="aka.png" class="aka-banner">
+    <img src="aka.png" alt="" class="aka-banner">
 
-  <p>welcome to the about page, i'm trying to tidy it up. i'm <b>June</b>, 17 years old, from Serbia. I write code across a few languages and mostly put that toward building games, i also like editing videos.</p>
+    <p>welcome to the about page, i'm trying to tidy it up. i'm <b>June</b>, 17 years old, from Serbia. I write code across a few languages and mostly put that toward building games, i also like editing videos.</p>
 
-  <p>i like physics and mathematics, quantum computing, electronics, computer history, hardware, 3D graphics and rendering, low-level programming, operating systems, game engines, and game development generally. Beyond that, 2D and 3D art, drawing, painting, reading, music theory and composition, YTPMV, Siivagunner(high quality video game rips), philosophy, chess, modding, collecting, lifting, and watching NFL on the side. It's a lot, i know.</p>
+    <p>i like physics and mathematics, quantum computing, electronics, computer history, hardware, 3D graphics and rendering, low-level programming, operating systems, game engines, and game development generally. Beyond that, 2D and 3D art, drawing, painting, reading, music theory and composition, YTPMV, Siivagunner(high quality video game rips), philosophy, chess, modding, collecting, lifting, and watching NFL on the side. It's a lot, i know</p>
 
-  <p>On paper my occupation is "high school student." i've played piano since i was eight and i'm hoping to pick up saxophone next (a close second favorite behind piano, naturally :)). The languages i'm most at home in are C, <a href="https://www.youtube.com/live/C1pjPv3WJyo">C++</a>, and Lua. i read more than most people expect of a programmer, though the one work that's actually shaped how i live my life is <b>Homestuck</b>, not much other fiction comes close.</p>
+    <p>On paper my occupation is "high school student." i've played piano since i was eight and i'm hoping to pick up saxophone next (a close second favorite behind piano, naturally :)). The languages i'm most at home in are C, <a href="https://www.youtube.com/live/C1pjPv3WJyo">C++</a>, and Lua. i read more than most people expect of a programmer, though the one work that's actually shaped how i live my life is <b>Homestuck</b>, not much other fiction comes close.</p>
 
-  <p>I co-founded <a href="https://fishyogurtbacteriavirus.neocities.org/">fishyogurtbacteriavirus</a>, a small creative collective built around game projects. When i have the time (which isn't often) i play piano or put together <a href="https://www.youtube.com/@serbianknifefightytpmv">YTPMV and mashup covers</a>. Since 2026 i've been part of the Technical Sciences program at <a href="https://petnica.rs/">Petnica Research Center</a>. I collect old hardware - peripherals, terminals, computers, electronic instruments, anything with history behind it. I compete in math and physics olympiads in my country and have taken home a few medals. I'm kind of a gamer, just less than i used to, these days it's mostly <a href="https://www.chess.com/member/serbianknifefight">chess</a> or <a href='https://slippi.gg/user/DVNO-858'>Super Smash Bros. Melee.</a></p>
+    <p>I co-founded <a href="https://fishyogurtbacteriavirus.neocities.org/">fishyogurtbacteriavirus</a>, a small creative collective built around game projects. When i have the time (which isn't often) i play piano or put together <a href="https://www.youtube.com/@serbianknifefightytpmv">YTPMV and mashup covers</a>. Since 2026 i've been part of the Technical Sciences program at <a href="https://petnica.rs/">Petnica Research Center</a>. I collect old hardware - peripherals, terminals, computers, electronic instruments, anything with history behind it. I compete in math and physics olympiads in my country and have taken home a few medals. I'm kind of a gamer, just less than i used to, these days it's mostly <a href="https://www.chess.com/member/serbianknifefight">chess</a> or <a href='https://slippi.gg/user/DVNO-858'>Super Smash Bros. Melee.</a></p>
 
-  <details class="tree-folder" open>
-    <summary>favorites/</summary>
-    <div class="tree-kv"><span class="tree-key">games</span>Metal Gear Solid 2, Undertale, Terraria, LSD: Dream Emulator, Barotrauma, Mindustry, Fractal Block World, Fallout: New Vegas, Hollow Knight, Dark Souls 2, Deltarune, LISA, Yume Nikki</div>
-    <details class="tree-item">
-      <summary>albums <span class="tree-note">(chart, click to enlarge)</span></summary>
-      <img src="muchart.png" class="expandable-img">
+    <details class="tree-folder" open>
+      <summary>favorites/</summary>
+      <div class="tree-kv"><span class="tree-key">games</span>Metal Gear Solid 2, Undertale, Terraria, LSD: Dream Emulator, Barotrauma, Mindustry, Fractal Block World, Fallout: New Vegas, Hollow Knight, Dark Souls 2, Deltarune, LISA, Yume Nikki</div>
+      <details class="tree-item">
+        <summary>albums <span class="tree-note">(chart, click to enlarge)</span></summary>
+        <img src="muchart.png" alt="Favorite albums chart" class="expandable-img">
+      </details>
+      <div class="tree-kv"><span class="tree-key">ytpmvers</span>, <a href="https://www.youtube.com/@ColtonWatson">Colton Watson</a> & <a href="https://www.youtube.com/@resampler">Cake</a></div>
+      <div class="tree-kv"><span class="tree-key">anime</span>Jojo's Bizarre Adventure, Neon Genesis Evangelion, Cowboy Bebop</div>
+      <div class="tree-kv"><span class="tree-key">animals</span>Pigeons and Raccoons</div>
+      <div class="tree-kv"><span class="tree-key">color</span><span style="color:#2e7d32;">Green</span></div>
     </details>
-    <div class="tree-kv"><span class="tree-key">ytpmvers</span><a href="https://www.youtube.com/@ColtonWatson">Colton Watson</a>, <a href="https://www.youtube.com/@resampler">Cake</a>, <a href="https://www.youtube.com/@meltdrum">Meltdrum</a></div>
-    <div class="tree-kv"><span class="tree-key">anime</span>Jojo's Bizarre Adventure, Neon Genesis Evangelion, Cowboy Bebop</div>
-    <div class="tree-kv"><span class="tree-key">animals</span>Pigeons and Raccoons</div>
-    <div class="tree-kv"><span class="tree-key">color</span><span style="color:#2e7d32;">Green</span></div>
-  </details>
 
-</div>
+    <div class="page-footer">
+      <span id="lastmod"></span>
+      <a href="https://github.com/SerbianKnifeFight">source</a>
+    </div>
 
-<div class="prometheus">
-  <span id="lastmod"></span>
-  <a href="https://github.com/SerbianKnifeFight">source</a>
+  </div>
 </div>
 
 <div class="lightbox-overlay" id="lightbox">
