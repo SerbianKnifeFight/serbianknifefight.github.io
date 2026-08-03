@@ -222,12 +222,21 @@ details iframe {
 
 .badges {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: 10px 12px;
   margin-top: 16px;
 }
-.badges img { max-height: 35px; width: auto; }
+.badges a {
+  display: block;
+  line-height: 0;
+}
+.badges img {
+  display: block;
+  width: 88px;
+  height: 31px;
+}
 
 .art-grid {
   display: grid;
@@ -403,8 +412,15 @@ index: `
 
 <div class="badges">
   <a href="https://petnica.rs/"><img src="petnica.png"></a>
-  <img src="teh.gif">
-  <a href="https://iwf.gay/"><img src="iwf15.gif"></a>
+  <a href="#"><img src="teh.gif"></a>
+  <a href="https://sgfr.highquality.rip/"><img src="sgfr.gif"></a>
+  <a href="https://mmaker.moe/"><img src="mmaker.gif"></a>
+  <a href="https://chfr.link/"><img src="chfr.gif"></a>
+  <a href="https://lachrymal.net/"><img src="lachrymal.gif"></a>
+  <a href="https://iwf.gay/2015/"><img src="iwf15.gif"></a>
+  <a href="https://iwf.gay/2016/"><img src="iwf16.gif"></a>
+  <a href="https://iwf.gay/2017/"><img src="iwf17.gif"></a>
+  <a href="https://iwf.gay/2021/"><img src="iwf21.gif"></a>
 </div>
 `,
 
@@ -440,7 +456,7 @@ projects: `
 					<summary>web/</summary>
 					<details class="tree-item">
 						   <summary>serbianknifefight.net <span class="tree-date">2025 & ongoing</span></summary>
-					  <p>This is the website you're currently on, fortunately. It was originally hosted on Neocities under the same name until i thought hosting it on my github with a domain was the more reliable option in 2026. Since 2025 my site's been through multiple stylistic iterations and i've settled on the one you see currently. It spawned from a need to have a one-and-done solution to everything i have to offer to this world instead of spreading it around the webs. It aint much, but i'm not a web developer</p>
+					  <p>This is the website you're currently on, fortunately. It was originally hosted on Neocities under the same name until i thought hosting it on <a href='https://github.com/SerbianKnifeFight'>my github</a> with a domain was the more reliable option in 2026. Since 2025 my site's been through multiple stylistic iterations and i've settled on the one you see currently. It spawned from a need to have a one-and-done solution to everything i have to offer to this world instead of spreading it around the webs. It aint much, but i'm not a web developer</p>
 						 </details>
 					<details class="tree-item">
 						 <summary>fishyogurtbacteriavirus.com<span class="tree-date">2026</span></summary>
