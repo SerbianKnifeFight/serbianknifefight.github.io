@@ -4,14 +4,14 @@
   <title>serbianknifefight's blog</title>
   <link>https://serbianknifefight.net/blog/</link>
   <description>writing about whatever is on my mind at the moment, updated whenever</description>
-  <lastBuildDate>Fri, 07 Aug 2026 14:23:57 +0000</lastBuildDate>
+  <lastBuildDate>Fri, 07 Aug 2026 14:37:13 +0000</lastBuildDate>
   <item>
-    <title>a blog that isn't just a newsletter anymore</title>
+    <title>sample post</title>
     <link>https://serbianknifefight.net/blog/posts/2026-01-01-hello-world.html</link>
     <guid isPermaLink="true">https://serbianknifefight.net/blog/posts/2026-01-01-hello-world.html</guid>
     <pubDate>Thu, 01 Jan 2026 00:00:00 +0000</pubDate>
     <category>essay</category>
-    <description>Why this section stopped pretending to be a mailing list and turned into an actual place to think out loud.</description>
+    <description>test.</description>
   </item>
 </channel>
 </rss>
