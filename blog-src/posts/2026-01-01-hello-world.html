@@ -1,32 +1,8 @@
 <!--
-title: a blog that isn't just a newsletter anymore
+title: sample post
 date: 2026-01-01
 type: essay
 tags: meta, writing
-excerpt: Why this section stopped pretending to be a mailing list and turned into an actual place to think out loud.
+excerpt: test.
 -->
-<p>This used to say "newsletter" at the top of the page, which was a lie in the way small lies about your own website tend to be. A newsletter implies a cadence, an audience expecting something, a format you promise to repeat. What I actually wanted was closer to a notebook that other people happen to be able to read: essays when I have an actual argument to make, project logs when something ships or breaks, and diary entries when nothing in particular is happening but I want a record of it anyway.</p>
-
-<p>So this is the rebuilt version of that notebook. Same bones as the rest of the site &mdash; same orange topbar, same cream page, same tree-shaped sidebar that's been the site's whole personality since I stopped trying to make it look like anything other than what it is &mdash; but stretched out into something built for reading, not just browsing.</p>
-
-<h2>what changed, mechanically</h2>
-<p>Every post now lives at its own address instead of being a chunk of a JavaScript object switched in and out of view. That was fine for a portfolio page where nothing needed a permalink, but it's a bad way to run a blog: no stable links, no RSS, nothing search engines or feed readers can hold onto. This version generates real files &mdash; one per post &mdash; plus an <code>rss.xml</code> that updates itself every time something new goes up.</p>
-
-<blockquote>The sidebar tree isn't decoration. It's the same file-explorer conceit as the rest of the site, doing the same job here: showing you the shape of the archive before you commit to reading any of it.</blockquote>
-
-<h2>what it's for</h2>
-<p>Three kinds of posts, loosely:</p>
-<ul>
-  <li><strong>essays</strong> &mdash; actual arguments about whatever's stuck in my head that week</li>
-  <li><strong>project</strong> logs &mdash; devlog-shaped updates on the things listed elsewhere on this site</li>
-  <li><strong>diary</strong> entries &mdash; less structured, more "here's what's going on"</li>
-</ul>
-<p>They all live in the same stream instead of three separate blogs, because that's closer to how a person's attention actually moves &mdash; the tag list in the sidebar is there for anyone who wants to filter.</p>
-
-<h2>how it's built</h2>
-<p>No CMS, no database, no build step you need a server for. Each post is a plain HTML file with a small comment block on top for the title, date, type, and tags. A short Python script reads all of them and generates the index, the individual post pages, and the RSS feed. Run the script, commit the output, done &mdash; the same static-file philosophy as the rest of the site, just with a few more moving parts.</p>
-<pre><code>python3 build.py</code></pre>
-<p>That's the whole deploy process. No framework lock-in, nothing to keep updated, nothing that breaks when some JavaScript package gets abandoned in three years.</p>
-
-<hr>
-<p>Anyway. First real post coming whenever I finish writing it.</p>
+<p>test</p>
