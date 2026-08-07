@@ -1,0 +1,357 @@
+/* ==========================================================================
+   serbianknifefight blog — stylesheet
+   Extends the tokens from the main site (topbar rust, cream content box,
+   tree-nav file-explorer, hexagon canvas) into a long-form reading layout.
+   ========================================================================== */
+
+:root {
+  --bg-dark:       #0d0d0d;
+  --topbar:        #ff5d38;
+  --topbar-border: #b56500;
+  --cream:         #f7f7e1;
+  --cream-alt:     #e2dfc9;
+  --border-muted:  #b3af8f;
+  --text-main:     #000;
+  --text-muted:    #6b6850;
+  --text-faint:    #8c8760;
+  --accent:        #b5450c;
+  --footer-bg:     #999;
+  --code-bg:       #1a1a14;
+  --code-text:     #e2dfc9;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: "Courier New", monospace;
+  background: var(--bg-dark);
+  color: var(--text-main);
+  overflow-x: hidden;
+}
+
+/* Web 1.0 forum conceit: the whole thing sits in a bordered, drop-shadowed
+   "window" floating on the hex canvas, instead of stretching edge to edge. */
+.site-frame {
+  max-width: 920px;
+  margin: 28px auto;
+  background: var(--cream);
+  border: 2px solid #000;
+  box-shadow: 4px 4px 0 rgba(0, 0, 0, .45);
+}
+@media (max-width: 960px) {
+  .site-frame { margin: 0; max-width: none; border-left: none; border-right: none; box-shadow: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+}
+
+#bestagon {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  z-index: -1;
+  pointer-events: none;
+}
+
+a { color: var(--accent); }
+a:focus-visible, button:focus-visible, summary:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.site-frame { width: 100%; }
+
+/* ---- topbar ---- */
+.topbar {
+  background: var(--topbar);
+  padding: 5px 12px;
+  border-bottom: 3px solid var(--topbar-border);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+.topbar a {
+  color: #000;
+  text-decoration: none;
+  font-size: clamp(13px, 3vw, 16px);
+}
+.topbar a::before { content: "/"; opacity: .55; margin-right: 1px; }
+.topbar a:hover, .topbar a.active { text-decoration: underline; }
+
+/* ---- content box / two-column shell (shared with main site) ---- */
+.content-box {
+  background: var(--cream);
+  color: #000;
+  width: 100%;
+  display: flex;
+  /* default (stretch) on purpose — this is what makes the sidebar's
+     background run the full height of the content column instead of
+     stopping short after its own links end. */
+  min-height: 360px;
+}
+
+.tree-nav {
+  width: fit-content;
+  min-width: 200px;
+  flex-shrink: 0;
+  background: var(--cream-alt);
+  border-right: 1px solid var(--border-muted);
+  padding: 12px 16px 12px 10px;
+  font-size: 14px;
+  position: sticky;
+  top: 0;
+}
+.tree-root { font-size: 11px; color: var(--text-muted); margin-bottom: 8px; white-space: nowrap; }
+.tree-nav a { display: block; padding: 3px 0; color: #000; text-decoration: none; white-space: nowrap; }
+.tree-nav a .tc { white-space: pre; color: var(--text-faint); }
+.tree-nav a.nav-sub { font-size: 11.5px; color: #29291f; }
+.tree-nav a:hover { background: #d6d3b5; }
+.tree-nav a.nav-top.active, .tree-nav a.active { font-weight: bold; color: var(--accent); }
+.tree-nav .rss-link { margin-top: 10px; padding-top: 8px; border-top: 1px dotted var(--border-muted); }
+.tree-nav .tag-list { margin-top: 4px; }
+.tree-nav .tag-list a { font-size: 12px; }
+
+.content-inner {
+  flex: 1;
+  min-width: 0;
+  padding: 18px 22px 32px;
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.content-inner h1 { font-size: 22px; margin: 0 0 6px; }
+.content-inner .note { font-size: 12px; font-style: italic; color: var(--text-muted); margin: -2px 0 14px; }
+
+/* ---- post list: old phpBB/vBulletin-style thread table ---- */
+.listing-head {
+  font-family: Verdana, sans-serif;
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+.tag-filter-notice {
+  font-family: Verdana, sans-serif;
+  font-size: 12px;
+  background: var(--cream-alt);
+  border: 1px solid var(--border-muted);
+  padding: 5px 10px;
+  margin-bottom: 10px;
+  display: none;
+}
+.tag-filter-notice.active { display: block; }
+.tag-filter-notice a { margin-left: 6px; }
+
+.thread-table {
+  width: 100%;
+  max-width: 760px;
+  border-collapse: collapse;
+  border: 1px solid #000;
+  font-family: Verdana, sans-serif;
+  font-size: 12.5px;
+}
+.thread-table thead th {
+  background: var(--topbar);
+  color: #000;
+  text-align: left;
+  padding: 6px 9px;
+  border-bottom: 2px solid var(--topbar-border);
+  font-family: "Courier New", monospace;
+  font-size: 11.5px;
+  font-weight: bold;
+}
+.thread-table tbody tr { border-bottom: 1px solid var(--border-muted); }
+.thread-table tbody tr:nth-child(odd) { background: #efedd9; }
+.thread-table tbody tr:nth-child(even) { background: var(--cream); }
+.thread-table tbody tr:hover { background: #dedbbd; }
+.thread-table tbody tr.tag-hidden { display: none; }
+.thread-table td {
+  padding: 7px 9px;
+  vertical-align: top;
+  border-left: 1px dotted var(--border-muted);
+}
+.thread-table td:first-child { border-left: none; }
+.thread-table .col-type, .thread-table .col-date {
+  white-space: nowrap;
+  width: 1%;
+  color: var(--text-muted);
+  font-size: 11.5px;
+}
+.thread-table a.post-title {
+  font-weight: bold;
+  color: #000;
+  text-decoration: none;
+}
+.thread-table a.post-title:hover { color: var(--accent); text-decoration: underline; }
+.thread-table .new-badge {
+  display: inline-block;
+  background: var(--accent);
+  color: var(--cream);
+  font-size: 9.5px;
+  font-weight: bold;
+  padding: 1px 4px;
+  margin-left: 6px;
+  vertical-align: middle;
+  letter-spacing: .03em;
+}
+.thread-excerpt {
+  display: block;
+  font-size: 11px;
+  color: var(--text-muted);
+  font-weight: normal;
+  margin-top: 3px;
+}
+@media (max-width: 560px) {
+  .thread-table .col-date { display: none; }
+}
+
+/* ---- single post / article ---- */
+.post-header {
+  max-width: 680px;
+  margin-bottom: 18px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border-muted);
+}
+.post-header h1 { font-size: 24px; margin: 0 0 8px; line-height: 1.25; }
+.post-meta {
+  font-family: Verdana, sans-serif;
+  font-size: 11.5px;
+  color: var(--text-muted);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 10px;
+}
+.post-meta .post-type { font-size: 11px; }
+.post-tags { margin-top: 6px; }
+.post-tags a {
+  font-size: 11px;
+  color: var(--text-muted);
+  text-decoration: none;
+  background: var(--cream-alt);
+  border: 1px solid var(--border-muted);
+  padding: 1px 6px;
+  margin: 0 4px 4px 0;
+  display: inline-block;
+}
+.post-tags a:hover { color: var(--accent); border-color: var(--accent); }
+
+.post-content {
+  max-width: 680px;
+  font-family: Verdana, sans-serif;
+  font-size: 14.5px;
+  line-height: 1.65;
+}
+.post-content p { margin: 0 0 14px; }
+.post-content h2 {
+  font-family: "Courier New", monospace;
+  font-size: 18px;
+  color: var(--accent);
+  margin: 28px 0 10px;
+  padding-bottom: 3px;
+  border-bottom: 1px solid var(--accent);
+}
+.post-content h3 {
+  font-family: "Courier New", monospace;
+  font-size: 15px;
+  margin: 22px 0 8px;
+}
+.post-content ul, .post-content ol { margin: 0 0 14px; padding-left: 22px; }
+.post-content li { margin-bottom: 4px; }
+.post-content img { max-width: 100%; height: auto; border: 1px solid #000; display: block; margin: 6px 0; }
+.post-content figcaption { font-size: 11.5px; color: var(--text-muted); margin: 4px 0 14px; }
+.post-content blockquote {
+  margin: 0 0 14px;
+  padding: 6px 14px;
+  border: 1px solid var(--border-muted);
+  border-left: 3px solid var(--accent);
+  background: var(--cream-alt);
+  color: #33331f;
+  font-style: italic;
+}
+.post-content blockquote::before {
+  content: "quote:";
+  display: block;
+  font-family: "Courier New", monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  color: var(--text-faint);
+  font-style: normal;
+  margin-bottom: 4px;
+}
+.post-content hr { border: none; border-top: 1px dotted var(--border-muted); margin: 22px 0; }
+.post-content code {
+  font-family: "Courier New", monospace;
+  background: var(--cream-alt);
+  padding: 1px 4px;
+  font-size: 13px;
+}
+.post-content pre {
+  background: var(--code-bg);
+  color: var(--code-text);
+  padding: 12px 14px;
+  overflow-x: auto;
+  font-size: 12.5px;
+  line-height: 1.5;
+  margin: 0 0 16px;
+  border: 1px solid #000;
+}
+.post-content pre code { background: none; padding: 0; }
+
+.post-nav {
+  max-width: 680px;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 26px;
+  padding-top: 14px;
+  border-top: 1px dotted var(--border-muted);
+  font-size: 12.5px;
+}
+.post-nav a { text-decoration: none; }
+.post-nav a:hover { text-decoration: underline; }
+.post-nav .nav-next { text-align: right; margin-left: auto; }
+
+.back-link {
+  display: inline-block;
+  margin-top: 4px;
+  color: var(--accent);
+  text-decoration: none;
+  font-size: 12px;
+}
+.back-link:hover { text-decoration: underline; }
+
+/* ---- footer bar (shared "prometheus" strip) ---- */
+.prometheus {
+  background: var(--footer-bg);
+  padding: 4px 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+}
+.prometheus span, .prometheus a { font-size: 11px; color: #000; }
+.prometheus a { text-decoration: none; }
+.prometheus a:hover { text-decoration: underline; }
+
+@media (max-width: 700px) {
+  .content-box { flex-direction: column; }
+  .tree-nav {
+    width: 100%; max-width: none; position: static;
+    border-right: none; border-bottom: 1px solid var(--border-muted);
+    display: flex; flex-wrap: wrap; align-items: center;
+    gap: 2px 16px; padding: 8px 10px;
+  }
+  .tree-root { width: 100%; margin-bottom: 2px; }
+  .tree-nav .rss-link, .tree-nav .tag-list { width: 100%; border-top: none; margin-top: 4px; padding-top: 0; }
+}
+
+@media (max-width: 480px) {
+  .topbar { justify-content: center; gap: 10px; }
+  .content-inner { padding: 14px 14px 24px; }
+}
