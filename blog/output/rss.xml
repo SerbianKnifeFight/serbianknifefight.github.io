@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+<channel>
+  <title>serbianknifefight's blog</title>
+  <link>https://serbianknifefight.net/blog/</link>
+  <description>writing about whatever is on my mind at the moment, updated whenever</description>
+  <lastBuildDate>Fri, 07 Aug 2026 17:05:34 +0000</lastBuildDate>
+  <item>
+    <title>Writing A Blog Framework Is Surprisingly Easy</title>
+    <link>https://serbianknifefight.net/blog/posts/2026-08-07-hello-world.html</link>
+    <guid isPermaLink="true">https://serbianknifefight.net/blog/posts/2026-08-07-hello-world.html</guid>
+    <pubDate>Fri, 07 Aug 2026 00:00:00 +0000</pubDate>
+    <category>essay</category>
+    <description>A part of changing my blog philosophy was realizing that i don't really care about reading other peoples diaries (Unless they're like really interesting, or something) and generally all written media i read has themes and something to say, so i'm glad to say i'm heading to a more essay-like blog where i just write about my projects, or any topic that comes to mind.</description>
+  </item>
+</channel>
+</rss>
