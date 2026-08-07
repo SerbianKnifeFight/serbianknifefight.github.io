@@ -15,7 +15,6 @@ OUTPUT_DIR = os.path.join(ROOT, "output")
 SITE = {
     "title": "serbianknifefight's blog",
     "description": "writing about whatever is on my mind at the moment, updated whenever",
-    # Trailing slash matters — used to build absolute URLs for RSS.
     "base_url": "https://serbianknifefight.net/blog/",
 }
 
