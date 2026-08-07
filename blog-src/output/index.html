@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Essays, project logs, and diary entries from June (SerbianKnifeFight)." />
+<link rel="alternate" type="application/rss+xml" title="serbianknifefight — blog" href="rss.xml" />
+<link rel="icon" type="image/x-icon" href="../foldername/sitecon.ico" />
+<link rel="stylesheet" href="blog.css" />
+<title>serbianknifefight — blog</title>
+</head>
+<body>
+<canvas id="bestagon"></canvas>
+
+<div class="site-frame">
+
+<div class="topbar">
+  <a href="../index.html">home</a>
+  <a href="../aboutme.html">about</a>
+  <a href="index.html" class="active">blog</a>
+  <a href="rss.xml">rss</a>
+</div>
+
+<div class="content-box">
+
+<nav class="tree-nav">
+  <div class="tree-root">blog/</div>
+  <a href="index.html" class="nav-top active"><span class="tc">├── </span>index</a>
+  <a href="index.html#2026" class="nav-top"><span class="tc">└── </span>2026/</a>
+  <a href="posts/2026-01-01-hello-world.html" class="nav-sub"><span class="tc">    └── </span>a blog</a>
+  <div class="tag-list">
+    <a href="index.html?tag=devlog">devlog</a> (1)<br>
+    <a href="index.html?tag=example">example</a> (2)<br>
+    <a href="index.html?tag=meta">meta</a> (1)<br>
+    <a href="index.html?tag=writing">writing</a> (1)
+  </div>
+  <div class="rss-link"><a href="rss.xml"><span class="tc">└── </span>rss.xml</a></div>
+</nav>
+
+<div class="content-inner">
+  <h1>blog/</h1>
+  <p class="note">essays, project logs, and whatever else is on my mind — updated whenever</p>
+
+  <div class="listing-head">3 posts, newest first</div>
+  <div class="tag-filter-notice" id="tagNotice"></div>
+
+  <table class="thread-table">
+    <thead>
+      <tr>
+        <th class="col-topic">topic</th>
+        <th class="col-type">type</th>
+        <th class="col-date">date</th>
+      </tr>
+    </thead>
+    <tbody id="threadBody">
+      <tr data-tags="example"><td class="col-topic"><a class="post-title" href="posts/2026-01-05-example-diary-entry.html">example: a diary entry</a><span class="thread-excerpt">What a diary-type post looks like — replace this with a real entry.</span></td><td class="col-type">diary</td><td class="col-date">2026-01-05</td></tr>
+      <tr data-tags="example devlog"><td class="col-topic"><a class="post-title" href="posts/2026-01-03-example-project-log.html">example: a project log entry</a><span class="thread-excerpt">What a project-log-type post looks like — replace this with a real update.</span></td><td class="col-type">project</td><td class="col-date">2026-01-03</td></tr>
+      <tr data-tags="meta writing"><td class="col-topic"><a class="post-title" href="posts/2026-01-01-hello-world.html">a blog that isn&#x27;t just a newsletter anymore</a><span class="thread-excerpt">Why this section stopped pretending to be a mailing list and turned into an actual place to think out loud.</span></td><td class="col-type">essay</td><td class="col-date">2026-01-01</td></tr>
+    </tbody>
+  </table>
+</div>
+
+</div>
+
+<div class="prometheus">
+  <span id="lastmod"></span>
+  <a href="rss.xml">subscribe via rss</a>
+</div>
+
+</div>
+
+<script>
+// Tag filtering: /blog/index.html?tag=writing hides every row that isn't
+// tagged "writing". Each <tr> carries its tags in data-tags (space-separated).
+(function () {
+  const params = new URLSearchParams(location.search);
+  const tag = params.get('tag');
+  const notice = document.getElementById('tagNotice');
+  const rows = document.querySelectorAll('#threadBody tr');
+  if (!tag) return;
+  let matchCount = 0;
+  rows.forEach(row => {
+    const tags = (row.dataset.tags || '').split(' ');
+    if (tags.includes(tag)) {
+      matchCount++;
+    } else {
+      row.classList.add('tag-hidden');
+    }
+  });
+  notice.classList.add('active');
+  notice.textContent = `showing ${matchCount} post(s) tagged "${tag}" — `;
+  const clear = document.createElement('a');
+  clear.href = 'index.html';
+  clear.textContent = 'clear filter';
+  notice.appendChild(clear);
+})();
+
+const lastmodEl = document.getElementById('lastmod');
+if (lastmodEl) {
+  const lm = new Date(document.lastModified);
+  lastmodEl.textContent = 'updated ' + lm.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+}
+
+const canvas = document.getElementById("bestagon");
+const ctx = canvas.getContext("2d");
+let w, h;
+function resize() { w = canvas.width = window.innerWidth; h = canvas.height = window.innerHeight; }
+window.addEventListener("resize", resize);
+resize();
+const hexSize = 40;
+const hexHeight = Math.sqrt(3) * hexSize;
+let time = 0;
+function drawHex(x, y, pulse) {
+  ctx.beginPath();
+  for (let i = 0; i < 6; i++) {
+    const angle = (Math.PI / 3) * i;
+    const px = x + (hexSize + pulse) * Math.cos(angle);
+    const py = y + (hexSize + pulse) * Math.sin(angle);
+    ctx.lineTo(px, py);
+  }
+  ctx.closePath();
+  ctx.strokeStyle = "rgba(255, 255, 255, 0.15)";
+  ctx.stroke();
+}
+function animate() {
+  ctx.clearRect(0, 0, w, h);
+  let pulse = Math.sin(time * 0.02) * 5;
+  for (let row = -1; row < h / (hexHeight * 0.75) + 2; row++) {
+    for (let col = -1; col < w / hexSize + 2; col++) {
+      let x = col * hexSize * 1.5;
+      let y = row * hexHeight + (col % 2 ? hexHeight / 2 : 0);
+      drawHex(x, y, pulse);
+    }
+  }
+  time++;
+  requestAnimationFrame(animate);
+}
+animate();
+</script>
+
+</body>
+</html>

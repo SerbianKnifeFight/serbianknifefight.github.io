@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+<channel>
+  <title>serbianknifefight — blog</title>
+  <link>https://serbianknifefight.net/blog/</link>
+  <description>Essays, project logs, and diary entries from June (SerbianKnifeFight).</description>
+  <lastBuildDate>Thu, 06 Aug 2026 08:52:28 +0000</lastBuildDate>
+  <item>
+    <title>example: a diary entry</title>
+    <link>https://serbianknifefight.net/blog/posts/2026-01-05-example-diary-entry.html</link>
+    <guid isPermaLink="true">https://serbianknifefight.net/blog/posts/2026-01-05-example-diary-entry.html</guid>
+    <pubDate>Mon, 05 Jan 2026 00:00:00 +0000</pubDate>
+    <category>diary</category>
+    <description>What a diary-type post looks like — replace this with a real entry.</description>
+  </item>
+  <item>
+    <title>example: a project log entry</title>
+    <link>https://serbianknifefight.net/blog/posts/2026-01-03-example-project-log.html</link>
+    <guid isPermaLink="true">https://serbianknifefight.net/blog/posts/2026-01-03-example-project-log.html</guid>
+    <pubDate>Sat, 03 Jan 2026 00:00:00 +0000</pubDate>
+    <category>project</category>
+    <description>What a project-log-type post looks like — replace this with a real update.</description>
+  </item>
+  <item>
+    <title>a blog that isn't just a newsletter anymore</title>
+    <link>https://serbianknifefight.net/blog/posts/2026-01-01-hello-world.html</link>
+    <guid isPermaLink="true">https://serbianknifefight.net/blog/posts/2026-01-01-hello-world.html</guid>
+    <pubDate>Thu, 01 Jan 2026 00:00:00 +0000</pubDate>
+    <category>essay</category>
+    <description>Why this section stopped pretending to be a mailing list and turned into an actual place to think out loud.</description>
+  </item>
+</channel>
+</rss>
