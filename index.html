@@ -139,6 +139,36 @@ details p {
   margin: -4px 0 12px !important;
 }
 
+.index-june {
+  display: flex;
+  align-items: flex-start;
+  gap: 22px;
+  max-width: 800px;
+}
+.index-text {
+  flex: 1;
+  min-width: 0;
+}
+.index-text > p {
+  max-width: none;
+}
+.index-june img {
+  flex-shrink: 0;
+  width: 260px;
+  height: auto;
+  display: block;
+}
+
+@media (max-width: 640px) {
+  .index-june {
+    flex-direction: column-reverse;
+  }
+  .index-june img {
+    width: 200px;
+    margin: 0 auto 10px;
+  }
+}
+
 details.tree-folder,
 details.tree-item {
   margin: 3px 0;
@@ -379,8 +409,13 @@ const sections = {
 index: `
 <h1>serbianknifefight.net</h1>
 <p class="note">under construction, it changes all the time</p>
-<p>Welcome to my website. I'm June (A.K.A SerbianKnifeFight), i do more than a couple of things on <a href="https://en.wikipedia.org/wiki/Internets">the internets</a>. This site is my corner of the internet (Filled out the personal site contractual obligation where it states i need to put those words on my website). I use this website to share my projects, primarily computer stuff.</p>
-<p>I'm a retired homestuck fan, ex-roblox developer, computer wizard, 50% of <a href="https://fishyogurtbacteriavirus.neocities.org/">fishyogurtbacteriavirus</a>, aspiring disc jockey, and i do <a href="https://www.youtube.com/@serbianknifefightytpmv">YTPMV</a><br>Participant of the Technical Sciences program at <a href="https://petnica.rs/">Petnica Research Center</a> :)</p>
+<div class="index-june">
+  <div class="index-text">
+    <p>Welcome to my website. I'm June (A.K.A SerbianKnifeFight), i do more than a couple of things on <a href="https://en.wikipedia.org/wiki/Internets">the internets</a>. This site is my corner of the internet (Filled out the personal site contractual obligation where it states i need to put those words on my website). I use this website to share my projects, primarily computer stuff.</p>
+    <p>I'm a retired homestuck fan, ex-roblox developer, computer wizard, 50% of <a href="https://fishyogurtbacteriavirus.neocities.org/">fishyogurtbacteriavirus</a>, aspiring disc jockey, and i do <a href="https://www.youtube.com/@serbianknifefightytpmv">YTPMV</a><br>Participant of the Technical Sciences program at <a href="https://petnica.rs/">Petnica Research Center</a> :)</p>
+  </div>
+  <img src="pfp.webp">
+</div>
 
 <details class="tree-folder">
   <summary>setup/</summary>
@@ -452,9 +487,16 @@ projects: `
 <details class="tree-folder" id="music">
   <summary>music/</summary>
   <p>I'm an amatuer music producer and composer, i like making original compositions, remixes, arrangements, and YTPMV of varying quality.</p>
-  <div class="tree-row"><a href="https://serbianknifefight.bandcamp.com/">Bandcamp</a> - this is where i upload full mix original albums in high quality audio, most of these do get reuploaded on my <a href="https://www.youtube.com/@serbianknifefightdev">main channel</a>, they're mostly thematic - made specifically for some project</div>
-  <div class="tree-row"><a href="https://www.youtube.com/@serbianknifefightytpmv">2nd channel</a> - this is where i primarily upload YTPMV, but you may also find other arrangements that i deemed weren't album worthy, or additional content relating to the bandcamp/main channel music</div>
-  <div class="tree-row"><a href="https://soundcloud.com/serbianknifefight">Soundcloud/Daftpunkfan2009</a> - random mixes i made over a weekend, very low quality stuff lol, more casual production with no real intention i guess</div>
+  <details class="tree-item">
+  <summary>bandcamp</summary>
+  <div class="tree-row">
+  <a href="https://serbianknifefight.bandcamp.com/">Bandcamp</a> - this is where i upload full mix original albums in high quality audio, most of these do get reuploaded on my <a href="https://www.youtube.com/@serbianknifefightdev">main channel</a>, they're mostly thematic - made specifically for some project</div>
+  </details>
+  <details class="tree-item">
+  <summary>YTPMV</summary>
+  <div class="tree-row">
+  <a href="https://www.youtube.com/@serbianknifefightytpmv">2nd channel</a> - this is where i primarily upload YTPMV, but you may also find other arrangements that i deemed weren't album worthy, or additional content relating to the bandcamp/main channel music</div>
+</details>
 </details>
 
 <details class="tree-folder" id="soft">
@@ -494,6 +536,17 @@ projects: `
 							<p class="tree-note">I can't confirm if the game is age rated, so you most likely can't play.</p>						
 					</details>
   </details>
+    </details>
+  <details class="tree-folder" id="games">
+  <summary>C/</summary>
+  <details class="tree-item">
+			<summary>Directional Afterimage<span class="tree-date">2026</span></summary>
+			 <p>Directional Afterimage is an After Effects plugin that trails your layers with fading, translated echoes of their own recent frames. It was made because i really wanted to have that effect in <a href='https://youtu.be/XdL2XQPlUlU?si=8pXs9Gdm1cwkiROW'>one of my YTPMVs</a> but then i decided to build it and release it for free. It has multiple options and is fully keyframable, you can get it on <a href='https://serbianknifefightsoftware.itch.io/directional-afterimage-ae-plugin'>itch.io</a> and also find the source code on <a href='https://github.com/SerbianKnifeFight/DirectionalAfterimage'>github</a></p>
+			 </details>
+  <details class="tree-item">
+			<summary>img2pixel Fork<span class="tree-date">2026</span></summary>
+			 <p>w.i.p</p>
+			 </details>
 </details>
 </details>
 `,
