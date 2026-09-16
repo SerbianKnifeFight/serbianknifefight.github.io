@@ -4,7 +4,15 @@
   <title>serbianknifefight's blog</title>
   <link>https://serbianknifefight.net/blog/</link>
   <description>writing about whatever is on my mind at the moment, updated whenever</description>
-  <lastBuildDate>Mon, 10 Aug 2026 23:49:03 +0000</lastBuildDate>
+  <lastBuildDate>Wed, 16 Sep 2026 09:11:24 +0000</lastBuildDate>
+  <item>
+    <title>underwater.avi - Production Journal</title>
+    <link>https://serbianknifefight.net/blog/posts/2026-09-16-ytpmv-notes.html</link>
+    <guid isPermaLink="true">https://serbianknifefight.net/blog/posts/2026-09-16-ytpmv-notes.html</guid>
+    <pubDate>Wed, 16 Sep 2026 00:00:00 +0000</pubDate>
+    <category>journal</category>
+    <description>Around three days ago, I found &lt;a href='https://www.youtube.com/watch?v=IHn5D1gtp6Y'&gt;"What A Hacker's Astral Observatory Looks Like"&lt;/a&gt;, which I thought looked really beautiful. Then, Junki sent &lt;a href='https://www.youtube.com/watch?v=sE3nZuX9Zv8'&gt;this video by Lorne&lt;/a&gt; on Discord, and both grounded a lot of the visual ideas I would incorporate. For example, the CRT monitor playing the sample being recorded physically is something I've wanted to try out for a while - inspired by &lt;a href='https://www.youtube.com/watch?v=puXPhTDVppU'&gt;Darwin's "Project: Doomsday"&lt;/a&gt; (who is a big inspiration to me in general).</description>
+  </item>
   <item>
     <title>Writing A Blog Framework Is Surprisingly Easy</title>
     <link>https://serbianknifefight.net/blog/posts/2026-08-07-hello-world.html</link>
