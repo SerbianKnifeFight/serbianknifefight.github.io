@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<link rel="icon" type="image/x-icon" href="foldername/sitecon.ico">
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/x-icon" href="foldername/sitecon.ico">
 <title>SerbianKnifeFight</title>
 
 <style>
@@ -52,6 +52,7 @@ body {
 }
 .topbar a:hover { text-decoration: underline; }
 
+
 .content-box {
   background: #f7f7e1;
   color: #000;
@@ -59,6 +60,7 @@ body {
   display: flex;
   min-height: 360px;
 }
+
 
 .tree-nav {
   width: fit-content;
@@ -92,6 +94,7 @@ body {
 }
 .tree-nav a:hover { background: #d6d3b5; }
 .tree-nav a.nav-top.active { font-weight: bold; color: #b5450c; }
+
 
 .content-inner {
   flex: 1;
@@ -139,6 +142,7 @@ details p {
   margin: -4px 0 12px !important;
 }
 
+
 .index-june {
   display: flex;
   align-items: flex-start;
@@ -168,6 +172,7 @@ details p {
     margin: 0 auto 10px;
   }
 }
+
 
 details.tree-folder,
 details.tree-item {
@@ -250,6 +255,31 @@ details iframe {
   color: #8c8760;
 }
 
+
+.yt-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 12px;
+  max-width: 800px;
+  margin: 6px 0 10px 18px;
+}
+.yt {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  background: #000;
+  border: 1px solid #000;
+}
+.yt iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  max-width: none;
+  border: 0;
+}
+
+
 .badges {
   display: flex;
   flex-wrap: wrap;
@@ -267,6 +297,7 @@ details iframe {
   width: 88px;
   height: 31px;
 }
+
 
 .art-grid {
   display: grid;
@@ -317,6 +348,7 @@ details iframe {
   cursor: pointer;
 }
 
+
 .prometheus {
   background: #999;
   padding: 4px 12px;
@@ -334,6 +366,7 @@ details iframe {
   font-size: 11px;
 }
 .prometheus a:hover { text-decoration: underline; }
+
 
 @media (max-width: 700px) {
   .content-box { flex-direction: column; }
@@ -378,9 +411,12 @@ details iframe {
   <div class="tree-root">serbianknifefight.net</div>
   <a href="#index" data-section="index" class="nav-top active"><span class="tc">├── </span>index</a>
   <a href="#projects" data-section="projects" class="nav-top"><span class="tc">├── </span>projects/</a>
-  <a href="#projects" data-section="projects" data-target="fygbv" class="nav-sub"><span class="tc">│   └── </span>fishyogurtbacteriavirus/</a>
+  <a href="#projects" data-section="projects" data-target="fygbv" class="nav-sub"><span class="tc">│   ├── </span>fishyogurtbacteriavirus/</a>
   <a href="#projects" data-section="projects" data-target="music" class="nav-sub"><span class="tc">│   ├── </span>music/</a>
-  <a href="#projects" data-section="projects" data-target="soft" class="nav-sub"><span class="tc">│   ├── </span>software/</a>
+  <a href="#projects" data-section="projects" data-target="soft" class="nav-sub"><span class="tc">│   └── </span>software/</a>
+  <a href="#video" data-section="video" class="nav-top"><span class="tc">├── </span>video/</a>
+  <a href="#video" data-section="video" data-target="hire" class="nav-sub"><span class="tc">│   ├── </span>hire-me/</a>
+  <a href="#video" data-section="video" data-target="examples" class="nav-sub"><span class="tc">│   └── </span>examples/</a>
   <a href="#reading" data-section="reading" class="nav-top"><span class="tc">├── </span>reading/</a>
   <a href="#reading" data-section="reading" data-target="finished" class="nav-sub"><span class="tc">│   ├── </span>finished/</a>
   <a href="#reading" data-section="reading" data-target="planned" class="nav-sub"><span class="tc">│   └── </span>planned/</a>
@@ -414,7 +450,7 @@ index: `
     <p>Welcome to my website. I'm June (A.K.A SerbianKnifeFight), i do more than a couple of things on <a href="https://en.wikipedia.org/wiki/Internets">the internets</a>. This site is my corner of the internet (Filled out the personal site contractual obligation where it states i need to put those words on my website). I use this website to share my projects, primarily computer stuff.</p>
     <p>I'm a retired homestuck fan, ex-roblox developer, computer wizard, 50% of <a href="https://fishyogurtbacteriavirus.neocities.org/">fishyogurtbacteriavirus</a>, aspiring disc jockey, and i do <a href="https://www.youtube.com/@serbianknifefightytpmv">YTPMV</a><br>Participant of the Technical Sciences program at <a href="https://petnica.rs/">Petnica Research Center</a> :)</p>
   </div>
-  <img src="pfp.webp">
+  <img src="pfp.webp" alt="June">
 </div>
 
 <details class="tree-folder">
@@ -425,13 +461,13 @@ index: `
   <div class="tree-kv"><span class="tree-key">text</span><a href="https://neovim.io/">Neovim</a>, <a href="https://notepad-plus-plus.org/">Notepad++</a></div>
   <div class="tree-kv"><span class="tree-key">3d</span><a href="https://www.blender.org/">Blender</a>, <a href="https://richwhitehouse.com/index.php?content=inc_projects.php&showproject=91">Noesis</a></div>
   <div class="tree-kv"><span class="tree-key">audio</span><a href="https://www.audacityteam.org/">Audacity</a>, FL Studio, <a href="https://www.polyphone.io/">Polyphone</a>, Melodyne, <a href="https://www.reaper.fm/">Reaper</a></div>
-  <div class="tree-kv"><span class="tree-key">video</span><a href="https://www.blackmagicdesign.com/products/davinciresolve">DaVinci Resolve</a>, <a href="https://kdenlive.org/">Kdenlive</a>, Sony Vegas 13, Adobe After Effects</div>
-  <div class="tree-kv"><span class="tree-key">code</span><a href="https://vscodium.com/#install">VSCodium</a>, <a href="https://www.arduino.cc/en/software/">Arduino IDE</a> <span class="tree-note">(arduino only)</span></div>
+  <div class="tree-kv"><span class="tree-key">video</span><a href="https://www.ffmpeg.org/">ffmpeg</a>, <a href="https://github.com/yt-dlp/yt-dlp">yt-dlp</a><a href="https://www.blackmagicdesign.com/products/davinciresolve">DaVinci Resolve</a>, <a href="https://kdenlive.org/">Kdenlive</a>, Sony Vegas 13, Adobe After Effects</div>
+  <div class="tree-kv"><span class="tree-key">code</span><a href="https://git-scm.com/">git</a>, <a href="https://gcc.gnu.org/">gcc</a>, <a href="https://vscodium.com/#install">VSCodium</a>, <a href="https://www.arduino.cc/en/software/">Arduino IDE</a> <span class="tree-note">(arduino only)</span></div>
   <div class="tree-kv"><span class="tree-key">other</span><a href="https://www.winehq.org/">Wine</a>, <a href="https://waydro.id/">Waydroid</a></div>
 </details>
 
 <details class="tree-folder">
-  <summary>links/</summary>    
+  <summary>links/</summary>
   <div class="tree-kv"><a href="https://fishyogurtbacteriavirus.itch.io">itch.io</a> <span class="tree-note">fishyogurtbacteriavirus</span></div>
   <div class="tree-kv"><a href="https://gamejolt.com/@FISHYOGURTBACTERIAVIRUS">gamejolt</a> <span class="tree-note">fishyogurtbacteriavirus</span></div>
   <div class="tree-kv"><a href="https://github.com/SerbianKnifeFight">github</a></div>
@@ -441,30 +477,31 @@ index: `
   <div class="tree-kv"><a href="https://steamcommunity.com/id/SerbianKnifeF1ght/">steam</a></div>
   <div class="tree-kv"><a href="https://www.chess.com/member/serbianknifefight">chess.com</a></div>
   <div class="tree-kv"><a href="https://otodb.net/profile/SerbianKnifeFight">otodb.net</a></div>
-  <div class="tree-kv"><span class="tree-key">email</span><a href="mailto:serbianknifefightbusiness@gmail.com">serbianknifefightbusiness (at) gmail (dot) com</a></div>
-  <div class="tree-kv"><span class="tree-key">matrix</span>@serbianknifefight:matrix.org</div>
-  <div class="tree-kv"><span class="tree-key">telegram</span>@serbianknifefight</div>
+  <div class="tree-kv"><span class="tree-key">email</span>serbianknifefightbusiness (at) gmail (dot) com</div>
+  <div class="tree-kv"><span class="tree-key">matrix</span>serbianknifefight:matrix.org</div>
+  <div class="tree-kv"><span class="tree-key">telegram</span>serbianknifefight</div>
 </details>
 
 <div class="badges">
-  <a href="https://serbianknifefight.net/"><img src="june.gif"></a>
-  <a href="https://spimbili.blogspot.com/"><img src="spim.png"></a>  
-  <a href="https://petnica.rs/"><img src="petnica.png"></a>
-  <a href="#"><img src="teh.gif"></a>
-  <a href="https://www.gentoo.org/"><img src="gentoo.gif"></a>
-  <a href="https://linuxmint.com/"><img src="linux_mint.gif"></a>
-  <a href="https://zen-browser.app/"><img src="zen.png"></a>
-  <a href="https://sgfr.highquality.rip/"><img src="sgfr.gif"></a>
-  <a href="https://mmaker.moe/"><img src="mmaker.gif"></a>
-  <a href="https://chfr.link/"><img src="chfr.gif"></a>
-  <a href="https://lachrymal.net/"><img src="lachrymal.gif"></a>
-  <a href="https://mth.moe/"><img src="mth.gif"></a>
-  <a href="https://iwf.gay/2015/"><img src="iwf15.gif"></a>
-  <a href="https://iwf.gay/2016/"><img src="iwf16.gif"></a>
-  <a href="https://iwf.gay/2017/"><img src="iwf17.gif"></a>
-  <a href="https://iwf.gay/2018/"><img src="iwf18.gif"></a>
-  <a href="https://iwf.gay/2019/"><img src="iwf19.gif"></a>
-  <a href="https://iwf.gay/2021/"><img src="iwf21.gif"></a>
+  <a href="https://serbianknifefight.net/"><img src="june.gif" alt="serbianknifefight"></a>
+  <a href="https://spimbili.blogspot.com/"><img src="spim.png" alt="spimbili"></a>
+  <a href="https://petnica.rs/"><img src="petnica.png" alt="Petnica"></a>
+  <a href="#"><img src="teh.gif" alt="teh"></a>
+  <a href="https://www.gentoo.org/"><img src="gentoo.gif" alt="Gentoo"></a>
+  <a href="https://linuxmint.com/"><img src="linux_mint.gif" alt="Linux Mint"></a>
+  <a href="https://zen-browser.app/"><img src="zen.png" alt="Zen Browser"></a>
+  <a href="https://sgfr.highquality.rip/"><img src="sgfr.gif" alt="sgfr"></a>
+  <a href="https://kkdsu.neocities.org/"><img src="kkds.gif" alt="mmaker"></a>
+  <a href="https://mmaker.moe/"><img src="mmaker.gif" alt="mmaker"></a>
+  <a href="https://chfr.link/"><img src="chfr.gif" alt="chfr"></a>
+  <a href="https://lachrymal.net/"><img src="lachrymal.gif" alt="lachrymal"></a>
+  <a href="https://mth.moe/"><img src="mth.gif" alt="mth"></a>
+  <a href="https://iwf.gay/2015/"><img src="iwf15.gif" alt="iwf 2015"></a>
+  <a href="https://iwf.gay/2016/"><img src="iwf16.gif" alt="iwf 2016"></a>
+  <a href="https://iwf.gay/2017/"><img src="iwf17.gif" alt="iwf 2017"></a>
+  <a href="https://iwf.gay/2018/"><img src="iwf18.gif" alt="iwf 2018"></a>
+  <a href="https://iwf.gay/2019/"><img src="iwf19.gif" alt="iwf 2019"></a>
+  <a href="https://iwf.gay/2021/"><img src="iwf21.gif" alt="iwf 2021"></a>
 </div>
 `,
 
@@ -473,89 +510,125 @@ projects: `
 <p>Here i record all my projects, alongside notes. Let's see what'll end up here..</p>
 
 <details class="tree-folder" id="fygbv">
-  <summary>fishyogurtbacteriavirus/</summary>
+  <summary>fishyogurtbacteriavirus/ <span class="tree-count">(1)</span></summary>
   <p><a href="https://fishyogurtbacteriavirus.neocities.org/">fishyogurtbacteriavirus</a> is a creative studio i co-created with my best friend <a href="https://spimbili.blogspot.com/">spimbili</a> and multiple other contributors, we are a group of creatives making video games and other visual arts.</p>
+
   <details class="tree-item">
     <summary title="I GOONED AT MY GRANDMAS CRIB AT 2 AM WHILE MY MOM WASN'T WATCHING">IGAMGCA2AMWMMWW <span class="tree-date">2025</span></summary>
     <p><a href="https://fishyogurtbacteriavirus.itch.io/i-gooned-at-my-grandmas-crib-at-2-am-while-my-mom-wasnt-watching">I GOONED AT MY GRANDMAS CRIB AT 2 AM WHILE MY MOM WASN'T WATCHING</a> is a modern take on the classic fnaf formula, with original mechanics and characters, fast-paced and hectic gameplay.</p>
-    <p>Development started on 9/10/2025 and finished on 12/21/2025. Created by SerbianKnifeFight, Spimbili, W1theredsoul and Luka.</p>
     <iframe height="167" loading="lazy" src="https://itch.io/embed/4135015" width="552" title="I GOONED AT MY GRANDMAS CRIB AT 2 AM WHILE MY MOM WASN'T WATCHING by fishyogurtbacteriavirus"></iframe>
     <p>It's stretching the definition of 'fnaf fan-game', i'd like to call it a complete reimagining of the blueprints, because to me honestly fnaf (Especially the early games) are just sort of blank slates to add onto, and we sure did. My personal issue with a lot of fan games is that they don't innovate, or give new takes on the fnaf formula, it's just kinda the same.</p>
-    <div class="tree-kv"><a href="https://gamejolt.com/games/goonedatcrib/1022373">Gamejolt page</a></div>
-    <div class="tree-kv"><a href="https://www.youtube.com/playlist?list=PLNtqTYk7xso7f1pwKARPI0r4fONgELQfg">All videos</a></div>
+    <div class="tree-kv"><span class="tree-key">dev</span>9/10/2025 – 12/21/2025</div>
+    <div class="tree-kv"><span class="tree-key">by</span>SerbianKnifeFight, Spimbili, W1theredsoul and Luka</div>
+    <div class="tree-kv"><span class="tree-key">gamejolt</span><a href="https://gamejolt.com/games/goonedatcrib/1022373">page</a></div>
+    <div class="tree-kv"><span class="tree-key">videos</span><a href="https://www.youtube.com/playlist?list=PLNtqTYk7xso7f1pwKARPI0r4fONgELQfg">all videos</a></div>
   </details>
-  </details>
+</details>
 
 <details class="tree-folder" id="music">
-  <summary>music/</summary>
-  <p>I'm an amatuer music producer and composer, i like making original compositions, remixes, arrangements, and YTPMV of varying quality.</p>
+  <summary>music/ <span class="tree-count">(2)</span></summary>
+  <p>I'm an amateur music producer and composer, i like making original compositions, remixes, arrangements, and YTPMV of varying quality.</p>
+
   <details class="tree-item">
-  <summary>bandcamp</summary>
-  <div class="tree-row">
-  <a href="https://serbianknifefight.bandcamp.com/">Bandcamp</a> - this is where i upload full mix original albums in high quality audio, most of these do get reuploaded on my <a href="https://www.youtube.com/@serbianknifefightdev">main channel</a>, they're mostly thematic - made specifically for some project</div>
+
+  <details class="tree-item">
+    <summary>YTPMV</summary>
+    <p><a href="https://www.youtube.com/@serbianknifefightytpmv">2nd channel</a> - this is where i primarily upload YTPMV, which is a medium that is very dear and important to me. I've been a fan for years beforehand but only started making videos in April 2026, and i'm so thankful for all the wonderful people that encouraged me in my early days and continued to be the best friends i could ask for.</p>
   </details>
-  <details class="tree-item">
-  <summary>YTPMV</summary>
-  <div class="tree-row">
-  <a href="https://www.youtube.com/@serbianknifefightytpmv">2nd channel</a> - this is where i primarily upload YTPMV, which is a medium that is very dear and important to me. I've been a fan for years beforehand but only started making videos in April 2026, and i'm so thankful for all the wonderful people that encouraged me in my early days and continued to be the best friends i could ask for.</div>
-</details>
 </details>
 
 <details class="tree-folder" id="soft">
-  <summary>software/</summary>
+  <summary>software/ <span class="tree-count">(8)</span></summary>
+
   <details class="tree-folder">
-					<summary>web/</summary>
-					<details class="tree-item">
-						   <summary>serbianknifefight.net <span class="tree-date">2025 & ongoing</span></summary>
-					  <p>This is the website you're currently on, fortunately. It was originally hosted on Neocities under the same name until i thought hosting it on <a href='https://github.com/SerbianKnifeFight'>my github</a> with a domain was the more reliable option in 2026. Since 2025 my site's been through multiple stylistic iterations and i've settled on the one you see currently. It spawned from a need to have a one-and-done solution to everything i have to offer to this world instead of spreading it around the webs. It aint much, but i'm not a web developer</p>
-						 </details>
-					<details class="tree-item">
-						 <summary>fishyogurtbacteriavirus.com<span class="tree-date">2026</span></summary>
-					  <p>no notes yet</p>
-						 </details>
-						 </details>
-<details class="tree-folder" id="games">
-  <summary>games/</summary>
-  <details class="tree-item">
-			<summary>Dumpsters Doom <span class="tree-date">2019</span></summary>
-			<p><a href="https://gamejolt.com/games/DDOOM/553492">Dumpsters Doom</a> was a game i made when i was 10 years old, it's a recreation of DOOM (1993)'s first two episodes with poorly made audio-visuals.</p>
-			<p>It's inspired by <a href="https://bit.ly/3ekFAxl">decino.wad</a> by decino. Originally supposed to have 3 episodes but i never ended up finishing the 3rd one.</p>
-		  </details>
-		  <details class="tree-item">
-			<summary>MS Paint Doom <span class="tree-date">2022</span></summary>
-			<p><a href="https://gamejolt.com/games/MSPDOOM/698382">MS Paint Doom</a> was a 're-imagining' of Dumpsters Doom kind of. I made it when i was 13, it took longer to create than Dumpsters Doom but not by a lot. It never received an Episode 2 or 3 but it received an Easter, April Fools and Halloween limited-edition updates. MSPD 2 was planned aswell but was ultimately scrapped and replaced by another game that took 3 months to make this time but was also scrapped.</p>
-		  </details>
-		   <details class="tree-folder">
-					<summary>roblox/</summary>
-					<details class="tree-item">
-					  <summary>GreenBaseplate <span class="tree-date">2021</span></summary>
-					  <p><a href="https://www.roblox.com/games/6500120623/GreenBaseplate">GreenBaseplate</a> is a roblox game i made with a couple of my closest online friends, it's a minigame-based game without any end objective. We supported the development until around the beginning of 2022 when we decided to stop updating it. It's definetly one of my most impactful projects as it's the first time i've been in the lead for a collaborative project. Heavily inspired by RBLXWare which was one of my favorite games at that moment, the trend of constant inspiration never stops with me.</p>
-					  <p class="tree-note">I can't confirm if the game is age rated, so you most likely can't play.</p>
-					</details>
-					<details class="tree-item">
-					  <summary>Roscoe Simulator <span class="tree-date">2022</span></summary>
-						<p><a href="https://www.roblox.com/games/10364259099/Roscoe-Simulator">Roscoe Simulator</a> was made initially by <a href='https://www.roblox.com/users/578396501/profile'>IExist</a> and i in the span of about one month in July 2022, it's a PvE Wave Defense game, where you have to defend a Core object from waves of enemies styled and themed after old roblox avatars and characters. It was in active development an entire year, during which we had multiple 'live events' which would let you unlock exclusive weapons. An April Fools event, Summer event, and an Anniversary Event (which may still be going on since we haven't updated the game to remove it). The codebase was extremely unorganized and hard to work in so we decided to transform all the ideas we had for the 'alpha' release into a new game from the ground up, eventually we got so many ideas it became a new project entirely, "Incursion", after 3 years of development hell IExist and i have both abandoned the project, one day i'll showcase all the things we've created for incursion.
-							<p class="tree-note">I can't confirm if the game is age rated, so you most likely can't play.</p>						
-					</details>
-  </details>
+    <summary>web/ <span class="tree-count">(2)</span></summary>
+
+    <details class="tree-item">
+      <summary>serbianknifefight.net <span class="tree-date">2025 &amp; ongoing</span></summary>
+      <p>This is the website you're currently on, fortunately. It was originally hosted on Neocities under the same name until i thought hosting it on <a href="https://github.com/SerbianKnifeFight">my github</a> with a domain was the more reliable option in 2026. Since 2025 my site's been through multiple stylistic iterations and i've settled on the one you see currently. It spawned from a need to have a one-and-done solution to everything i have to offer to this world instead of spreading it around the webs. It aint much, but i'm not a web developer</p>
     </details>
+
+    <details class="tree-item">
+      <summary>fishyogurtbacteriavirus.com <span class="tree-date">2026</span></summary>
+      <p>no notes yet</p>
+    </details>
+  </details>
+
+  <details class="tree-folder">
+    <summary>C/ <span class="tree-count">(2)</span></summary>
+
+    <details class="tree-item">
+      <summary>Directional Afterimage <span class="tree-date">2026</span></summary>
+      <p>Directional Afterimage is an After Effects plugin that trails your layers with fading, translated echoes of their own recent frames. It was made because i really wanted to have that effect in <a href="https://youtu.be/XdL2XQPlUlU?si=8pXs9Gdm1cwkiROW">one of my YTPMVs</a> but then i decided to build it and release it for free. It has multiple options and is fully keyframable, you can get it on <a href="https://serbianknifefightsoftware.itch.io/directional-afterimage-ae-plugin">itch.io</a> and also find the source code on <a href="https://github.com/SerbianKnifeFight/DirectionalAfterimage">github</a></p>
+    </details>
+
+    <details class="tree-item">
+      <summary>img2pixel <span class="tree-date">contributor, 2026</span></summary>
+      <p><a href="https://captain4lk.itch.io/slk-img2pixel">img2pixel</a> (<a href="https://github.com/Captain4LK/SoftLK-tools/tree/master">source</a>) is an open source tool for dithering images, a tool i personally use a lot in my workflow, and there were a handful of features that i have contributed to it, new dither modes, animated GIF support, custom UI theming, and lua scripting.</p>
+    </details>
+  </details>
+
   <details class="tree-folder" id="games">
-  <summary>C/</summary>
-  <details class="tree-item">
-			<summary>Directional Afterimage<span class="tree-date">2026</span></summary>
-			 <p>Directional Afterimage is an After Effects plugin that trails your layers with fading, translated echoes of their own recent frames. It was made because i really wanted to have that effect in <a href='https://youtu.be/XdL2XQPlUlU?si=8pXs9Gdm1cwkiROW'>one of my YTPMVs</a> but then i decided to build it and release it for free. It has multiple options and is fully keyframable, you can get it on <a href='https://serbianknifefightsoftware.itch.io/directional-afterimage-ae-plugin'>itch.io</a> and also find the source code on <a href='https://github.com/SerbianKnifeFight/DirectionalAfterimage'>github</a></p>
-			 </details>
-  <details class="tree-item">
-			<summary>img2pixel<span class="tree-date">contributor</span><span class="tree-date">2026</span></summary>
-			 <p><a href='https://captain4lk.itch.io/slk-img2pixel'>img2pixel</a> (<a href='https://github.com/Captain4LK/SoftLK-tools/tree/master'>source</a>)is a open source tool for dithering images, a tool i personally use a lot in my workflow, and there were a handful of features that i have contributed to it, new dither modes, animated GIF support, custom UI theming, and lua scripting.</p>
-			 </details>
+    <summary>games/ <span class="tree-count">(4)</span></summary>
+
+    <details class="tree-item">
+      <summary>MS Paint Doom <span class="tree-date">2022</span></summary>
+      <p><a href="https://gamejolt.com/games/MSPDOOM/698382">MS Paint Doom</a> was a 're-imagining' of Dumpsters Doom kind of. I made it when i was 13, it took longer to create than Dumpsters Doom but not by a lot. It never received an Episode 2 or 3 but it received an Easter, April Fools and Halloween limited-edition updates. MSPD 2 was planned as well but was ultimately scrapped and replaced by another game that took 3 months to make this time but was also scrapped.</p>
+    </details>
+
+    <details class="tree-item">
+      <summary>Dumpsters Doom <span class="tree-date">2019</span></summary>
+      <p><a href="https://gamejolt.com/games/DDOOM/553492">Dumpsters Doom</a> was a game i made when i was 10 years old, it's a recreation of DOOM (1993)'s first two episodes with poorly made audio-visuals.</p>
+      <p>It's inspired by <a href="https://bit.ly/3ekFAxl">decino.wad</a> by decino. Originally supposed to have 3 episodes but i never ended up finishing the 3rd one.</p>
+    </details>
+
+    <details class="tree-folder">
+      <summary>roblox/ <span class="tree-count">(2)</span></summary>
+
+      <details class="tree-item">
+        <summary>Roscoe Simulator <span class="tree-date">2022</span></summary>
+        <p><a href="https://www.roblox.com/games/10364259099/Roscoe-Simulator">Roscoe Simulator</a> was made initially by <a href="https://www.roblox.com/users/578396501/profile">IExist</a> and i in the span of about one month in July 2022, it's a PvE Wave Defense game, where you have to defend a Core object from waves of enemies styled and themed after old roblox avatars and characters. It was in active development an entire year, during which we had multiple 'live events' which would let you unlock exclusive weapons. An April Fools event, Summer event, and an Anniversary Event (which may still be going on since we haven't updated the game to remove it). The codebase was extremely unorganized and hard to work in so we decided to transform all the ideas we had for the 'alpha' release into a new game from the ground up, eventually we got so many ideas it became a new project entirely, "Incursion", after 3 years of development hell IExist and i have both abandoned the project, one day i'll showcase all the things we've created for incursion.</p>
+        <p class="tree-note">I can't confirm if the game is age rated, so you most likely can't play.</p>
+      </details>
+
+      <details class="tree-item">
+        <summary>GreenBaseplate <span class="tree-date">2021</span></summary>
+        <p><a href="https://www.roblox.com/games/6500120623/GreenBaseplate">GreenBaseplate</a> is a roblox game i made with a couple of my closest online friends, it's a minigame-based game without any end objective. We supported the development until around the beginning of 2022 when we decided to stop updating it. It's definitely one of my most impactful projects as it's the first time i've been in the lead for a collaborative project. Heavily inspired by RBLXWare which was one of my favorite games at that moment, the trend of constant inspiration never stops with me.</p>
+        <p class="tree-note">I can't confirm if the game is age rated, so you most likely can't play.</p>
+      </details>
+    </details>
+  </details>
 </details>
+`,
+
+video: `
+<h1>video/</h1>
+<p>I take on video work. If you need visuals, compositing, motion graphics and that sort of thing done for something you're making, hit me up. Some stuff i've made is down below so you know what you're getting into.</p>
+
+<details class="tree-folder" id="hire" open>
+  <summary>hire-me/</summary>
+  <p>Prices are discussed privately, there's no price list. Tell me what you're after (and when you need it by, if that matters) and we'll figure it out from there.</p>
+  <div class="tree-kv"><span class="tree-key">discord</span>@serbianknifefight</div>
+  <div class="tree-kv"><span class="tree-key">email</span>serbianknifefightbusiness (at) gmail (dot) com</div>
+  <div class="tree-kv"><span class="tree-key">telegram</span>@serbianknifefight</div>
+  <div class="tree-kv"><span class="tree-key">matrix</span>@serbianknifefight:matrix.org</div>
+</details>
+
+<details class="tree-folder" id="examples" open>
+  <summary>examples/ <span class="tree-count">(4)</span></summary>
+  <div class="yt-grid">
+    <div class="yt"><iframe loading="lazy" src="https://www.youtube-nocookie.com/embed/74GjKsvov6U" title="Example 1" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+    <div class="yt"><iframe loading="lazy" src="https://www.youtube-nocookie.com/embed/CpSEjb7aTxk" title="Example 2" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+    <div class="yt"><iframe loading="lazy" src="https://www.youtube-nocookie.com/embed/zxdL2EMEz9Q" title="Example 3" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+    <div class="yt"><iframe loading="lazy" src="https://www.youtube-nocookie.com/embed/m4buz8CzIVs" title="Example 4" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+  </div>
+  <p class="tree-note">More on my <a href="https://www.youtube.com/@serbianknifefightytpmv">channel</a>.</p>
 </details>
 `,
 
 reading: `
 <h1>reading/</h1>
-<p>This is where i share books/stories i've read. I'd like to read more than i do (It's like that with every hobby.), so this page kinda serves as motivation to read books and think about them critically. I'll try to write a review/share notes for each of the books read. (Takes time to write so be patient..)</p>
+<p>This is where i share books/stories i've read. I'd like to read more than i do currently (It's like that with every hobby.), so this page kinda serves as motivation to read books and think about them critically. I'll try to write a review/share notes for each of the books read. (Takes time to write so be patient..)</p>
 
 <details class="tree-folder" id="finished">
   <summary>finished/ <span class="tree-count">(17)</span></summary>
@@ -599,31 +672,31 @@ art: `
 <h1>art/</h1>
 <div class="art-grid">
   <figure class="art-item">
-    <img src="artpiece2026.jpg">
+    <img src="artpiece2026.jpg" alt="Yandere Fighter Fan-Art">
     <figcaption><b>Yandere Fighter Fan-Art</b><br>August 22nd 2026<br>Graphite, water colors, alcoholic markers. A4 paper</figcaption>
   </figure>
   <figure class="art-item">
-    <img src="flowers.jpg">
+    <img src="flowers.jpg" alt="Two violets">
     <figcaption><b>Two violets</b><br>February 12th 2026<br>Graphite, water colors. A4 paper</figcaption>
   </figure>
   <figure class="art-item">
-    <img src="pidzen.jpg">
+    <img src="pidzen.jpg" alt="White pigeon on cherry blossom branches">
     <figcaption><b>White pigeon on cherry blossom branches</b><br>January 12th 2026<br>Graphite, water colors, alcoholic markers. A4 paper</figcaption>
   </figure>
   <figure class="art-item">
-    <img src="Birb1.jpg">
+    <img src="Birb1.jpg" alt="White pigeon">
     <figcaption><b>White pigeon</b><br>January 11th 2026<br>Graphite and water colors. A5/Ripped A4 paper</figcaption>
   </figure>
   <figure class="art-item">
-    <img src="Birb2.jpg">
+    <img src="Birb2.jpg" alt="Pigeons">
     <figcaption><b>Pigeons</b><br>January 11th 2026<br>Graphite and water colors. A5/Ripped A4 paper</figcaption>
   </figure>
   <figure class="art-item">
-    <img src="Turing.jpg">
+    <img src="Turing.jpg" alt="Alan Turing portrait">
     <figcaption><b>Alan Turing portrait</b><br>January 10th 2026<br>Graphite. A5/Ripped A4 paper</figcaption>
   </figure>
   <figure class="art-item">
-    <img src="Amadeo.jpg">
+    <img src="Amadeo.jpg" alt="Amadeo Bordiga portrait">
     <figcaption><b>Amadeo Bordiga portrait</b><br>January 9th 2026<br>Graphite. A5/Ripped A4 paper</figcaption>
   </figure>
 </div>
@@ -665,6 +738,7 @@ if (lastmodEl) {
   lastmodEl.textContent = 'updated ' + lm.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
 }
 
+
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = document.getElementById('lightbox-img');
 function openLightbox(src, alt) {
@@ -682,6 +756,7 @@ document.getElementById('content').addEventListener('click', e => {
   const img = e.target.closest('.art-item img');
   if (img) openLightbox(img.src, img.alt);
 });
+
 
 const canvas = document.getElementById("bestagon");
 const ctx = canvas.getContext("2d");
